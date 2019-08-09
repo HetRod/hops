@@ -3,26 +3,26 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { map, catchError } from 'rxjs/operators';
+import { Storage } from '@ionic/storage';
 
 const API_URL = environment.api_url;
 
 @Injectable()
-
 export class AuthService {
     public isLoggedIn: boolean;
 
     constructor( 
-      private http: HttpClient,
+      public http: HttpClient,
       private storage: Storage) { }
 
     public login(credentials: any): Observable<any> {
       let data = {
-        username: credentials.phone_number,
+        username: credentials.username,
         password: credentials.password
       };
 
       return this.http
-      .post(`${API_URL}/login/`, data).pipe(
+      .post(`localhost:8100/api/index.php/login`, data).pipe(
          map((response:any) => {
            let idrol = response.idrol;
            this.saveTokenLocalStorage(idrol);

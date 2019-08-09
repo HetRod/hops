@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'www.pruebashopslatam.com/api',
+  api_url: 'http://www.pruebashopslatam.com/api',
 };
 
 /*
