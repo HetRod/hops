@@ -1,4 +1,54 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
+ion-content{
+  --ion-background-color:#2d1d5a;
+}
+
+ion-input{
+  --placeholder-color:  #7d7595;
+  --placeholder-opacity: 1;
+  --color:white;
+}
+
+.mobile {
+  margin-left: 2rem !important;
+  margin-top: 6rem;
+}
+
+.input_username{
+  margin-top: 2.5rem;
+  margin-left: 1rem;
+  margin-right: 1.5rem;
+  
+}
+
+.input_password{
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1.5rem;
+  
+}
+
+.icon{
+  margin-right: 1.5rem;
+}
+
+.button_sesion{
+  margin-top: 2rem;
+  text-align: center;
+  color: white;
+}
+
+
+.forgot_password{
+  margin-top: 1rem;
+  color: #68e5ad;
+  text-align: center;
+}
+
+.ion-color-ppal {
+  --ion-color-base: var(--ion-color-ppal);
+  --ion-color-base-rgb: var(--ion-color-ppal-rgb);
+  --ion-color-contrast: var(--ion-color-ppal-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-ppal-contrast-rgb);
+  --ion-color-shade: var(--ion-color-ppal-shade);
+  --ion-color-tint: var(--ion-color-ppal-tint);
 }
