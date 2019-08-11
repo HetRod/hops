@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
 import { AuthService } from '../users/shared/general.services';
 import { LoadingController } from '@ionic/angular';
+import { Routes, RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-company',
@@ -16,6 +17,7 @@ export class CompanyPage implements OnInit {
   constructor(
     public loadingController: LoadingController,
     private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -38,6 +40,11 @@ export class CompanyPage implements OnInit {
       console.log(this.events);
       console.log(response);
     });
+  }
+
+  detalles(evento){
+    console.log(evento);
+    this.router.navigate(['/evendetail'],{ state: {evento: evento } });
   }
 
 }

@@ -16,10 +16,10 @@
     <p>{{ date | date: 'MMMM'}}</p>
 
     <ion-list *ngFor="let event of events">
-      <ion-item>
+      <ion-item (click)="detalles(event)">
         <ion-label>{{ event.procedimientos }}</ion-label>
       </ion-item>
     </ion-list>
-    
+
   </div>
 </ion-content>
