@@ -64,33 +64,33 @@ export class HomePage implements OnInit {
   }
 
   public login() {
-    // this.utils.submitEventGA('Login', 'click', 'Login click');
-    this.presentLoading();
-
-   
+    // this.presentLoading();
 
     let credentials = {
       username: this.loginForm.get('username').value,
       password: this.loginForm.get('password').value
     };
 
-    this.authService.login(credentials).subscribe(
-      response => {
-        console.log(response);
-        this.router.navigate(['/company/']);
-        this.dismissLoading();
-      },
-      error => {
-        this.dismissLoading();
-        this.presentAlert("Ops..Tenemos problemas para iniciar sesión",error)
-      }
-    );
+    // this.authService.login(credentials).subscribe(
+    //   response => {
+    //     console.log(response);
+    //     this.router.navigate(['/company/']);
+    //     this.dismissLoading();
+    //   },
+    //   error => {
+    //     this.dismissLoading();
+    //     this.presentAlert("Ops..Tenemos problemas para iniciar sesión",error)
+    //   }
+    // );
 
-     
-     
-
-  
-  
+    let response: any = this.authService.login(credentials);
+    let idrol = response.userData.idrol
+    if (idrol === '2'){
+      this.router.navigate(['/company/']);
+    }else{
+      this.router.navigate(['/list/']);
+    }
+    
   }
 
 

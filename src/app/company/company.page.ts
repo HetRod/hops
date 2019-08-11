@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController, NavController } from '@ionic/angular';
+import { AuthService } from '../users/shared/general.services';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-company',
@@ -7,9 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyPage implements OnInit {
 
-  constructor() { }
+  public date: Date = new Date();
+  public events: any[];
+
+  constructor(
+    public loadingController: LoadingController,
+    private authService: AuthService,
+  ) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.authService.getUserData().then(userData => {
+      let data: any = {
+        numdoc: userData.numerodocumento,
+        open: false,
+        rol: userData.idrol,
+        orgs: userData.idempresa,
+        año: this.date.getFullYear(),
+        mes: this.date.getMonth() + 1
+      };
+
+      let response: any = this.authService.eventsLoad(data);
+
+      this.events = response.eventos;
+      console.log(this.events);
+      console.log(response);
+    });
   }
 
 }
