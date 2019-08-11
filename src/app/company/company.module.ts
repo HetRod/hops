@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { registerLocaleData } from '@angular/common';
+import localeEsAr from '@angular/common/locales/es-AR';
+
 
 import { IonicModule } from '@ionic/angular';
 
@@ -14,6 +17,8 @@ const routes: Routes = [
   }
 ];
 
+registerLocaleData(localeEsAr, 'es-Ar');
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,6 +26,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CompanyPage]
+  declarations: [CompanyPage],
+
 })
 export class CompanyPageModule {}

@@ -7,13 +7,23 @@ ion-toolbar{
 }
 
 ion-title{
-  --color: #ffffff;
+  --color: #68e5ad;
 }
 
 ion-menu-button {
-  --color: #ffffff;
+  --color: #68e5ad;
 }
 
 ion-icon {
   --color: #ffffff;
 }
+
+.ion-color-ppal {
+  --ion-color-base: var(--ion-color-ppal);
+  --ion-color-base-rgb: var(--ion-color-ppal-rgb);
+  --ion-color-contrast: var(--ion-color-ppal-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-ppal-contrast-rgb);
+  --ion-color-shade: var(--ion-color-ppal-shade);
+  --ion-color-tint: var(--ion-color-ppal-tint);
+}
+

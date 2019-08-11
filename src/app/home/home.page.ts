@@ -19,6 +19,7 @@ export class HomePage implements OnInit {
   public item: boolean;
   public auth: {};
   public errorMsg: string = 'Error Message.';
+  public listOrg: any[] = []
 
   ngOnInit() {
     this.item = false;
@@ -85,12 +86,48 @@ export class HomePage implements OnInit {
 
     let response: any = this.authService.login(credentials);
     let idrol = response.userData.idrol
-    if (idrol === '2'){
+    if (idrol === '3'){
       this.router.navigate(['/company/']);
     }else{
-      this.router.navigate(['/list/']);
+      let response2 = this.authService.orgLoad(credentials)
+      console.log(response2.userDataOrg)
+      for (let i=0; i<response2.userDataOrg.length; i++ ){
+        this.listOrg[i] = {
+          name: response2.userDataOrg[i].nombreempresa,
+          type: 'radio',
+          label: response2.userDataOrg[i].nombreempresa,
+          value: response2.userDataOrg[i].idempresa
+        }
+      }
+      this.presentAlertRadio();
     }
     
+  }
+
+  async presentAlertRadio() {
+
+    const alert = await this.alertController.create({
+      header: 'Seleccione una Empresa',
+      inputs: this.listOrg,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (data:string) => {
+            
+            console.log(data);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 
