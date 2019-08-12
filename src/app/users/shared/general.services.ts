@@ -22,7 +22,7 @@ export class AuthService {
       };
 
       return this.http
-      .post(`localhost:8100/api/index.php/login`, data).pipe(
+      .post(`http://54.233.178.103/api/index.php/login`, data).pipe(
          map((response:any) => {
            let idrol = response.idrol;
            this.saveTokenLocalStorage(idrol);
