@@ -6,6 +6,10 @@ ion-toolbar{
   --background:#2d1d5a;
 }
 
+ion-item {
+  --padding-left: 0;
+}
+
 ion-title{
   --color: #68e5ad;
 }
@@ -15,15 +19,21 @@ ion-menu-button {
 }
 
 ion-icon {
-  --color: #ffffff;
+  margin: 5px;
+ 
+  
 }
 
-.ion-color-ppal {
-  --ion-color-base: var(--ion-color-ppal);
-  --ion-color-base-rgb: var(--ion-color-ppal-rgb);
-  --ion-color-contrast: var(--ion-color-ppal-contrast);
-  --ion-color-contrast-rgb: var(--ion-color-ppal-contrast-rgb);
-  --ion-color-shade: var(--ion-color-ppal-shade);
-  --ion-color-tint: var(--ion-color-ppal-tint);
+ion-list {
+  margin: 0%;
 }
+
+.events{
+  padding: 1rem;
+  padding-left: 0.5rem;
+  height: 95vh;
+}
+
+
+
 

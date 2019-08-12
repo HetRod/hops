@@ -4,20 +4,35 @@
         <ion-menu-button autoHide="false" ></ion-menu-button>
       </ion-buttons>
       <ion-title>Mis Eventos</ion-title>
-      <ion-buttons slot="end">
-          <ion-icon slot="start" name="star"  color="ppal"></ion-icon>
-        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div style="    padding: 3rem;
-  height: 95vh;">
-    <p>{{ date | date: 'MMMM'}}</p>
-
-    <ion-list *ngFor="let event of events">
-      <ion-item (click)="detalles(event)">
-        <ion-label>{{ event.procedimientos }}</ion-label>
+  <div class ="events">
+    <div class="ion-text-uppercase">
+        <h3  _ngcontent-wfm-c1="" style="
+        text-align: center;" >{{ date | date: 'MMMM'}}</h3>
+    </div>
+  
+    <ion-list *ngFor="let event of events" >
+      <ion-item class="event-item" (click)="detalles(event)" >
+        <div *ngIf="event.estado == 1">
+          <ion-icon   name="arrow-dropright-circle" slot="start" color="confirmado"></ion-icon>
+        </div>
+        <div *ngIf="event.estado == 2">
+          <ion-icon   name="arrow-dropright-circle" slot="start" color="reservado"></ion-icon>
+        </div>
+        <div *ngIf="event.estado == 3">
+          <ion-icon   name="arrow-dropright-circle" slot="start" color="pendiente"></ion-icon>
+        </div>
+        <div *ngIf="event.estado == 4">
+          <ion-icon   name="arrow-dropright-circle" slot="start" color="completado"></ion-icon>
+        </div>
+        <ion-label >
+          <h2>{{ event.espaciofisico }}</h2>
+          <h3>{{ event.procedimientos }}</h3>
+          <p>{{ event.fechahorainicio.substring(0,11) }} {{ event.fechahorainicio.substring(11,16) }} </p>
+        </ion-label>
       </ion-item>
     </ion-list>
 

@@ -15,24 +15,25 @@ export class AuthService {
       public http: HttpClient,
       private storage: Storage) { }
 
-    // public login(credentials: any): Observable<any> {
-    //   let data = {
-    //     username: credentials.username,
-    //     password: credentials.password
-    //   };
+     public login(credentials: any): Observable<any> {
+      let data = {
+        username: credentials.username,
+        password: credentials.password
+      };
 
-    //   return this.http
-    //   .post(`http://54.233.178.103/api/index.php/login`, data).pipe(
-    //      map((response: any) => {
-    //        console.log(response);
-    //        let idrol = response.idrol;
-    //        this.saveTokenLocalStorage(idrol);
-    //        return idrol;
+      return this.http
+      .post(`http://54.233.178.103/Hops-Api-noti/Eventos/Login/Login.php`, data).pipe(
+         map((response: any) => {
+           console.log(response);
+            let idrol = response.idrol;
+           this.saveTokenLocalStorage(idrol);
+           return idrol;
 
-    //      }),catchError(this.handleError)
-    //   );
-    // }
+         }),catchError(this.handleError)
+      );
+    }
 
+    /*
     public login(credentials: any): any {
       let response: any = {
         userData: {
@@ -51,7 +52,7 @@ export class AuthService {
 
       this.saveUserDataLocalStorage(response.userData);
       return response;
-    }
+    }*/
 
     public eventsLoad(credentials: any): any {
       const response: any = {
