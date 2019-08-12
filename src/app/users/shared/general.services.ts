@@ -10,6 +10,7 @@ const API_URL = environment.api_url;
 @Injectable()
 export class AuthService {
     public isLoggedIn: boolean;
+  userData: any;
 
     constructor(
       public http: HttpClient,
@@ -24,10 +25,13 @@ export class AuthService {
       return this.http
       .post(`http://54.233.178.103/Hops-Api-noti/Eventos/Login/Login.php`, data).pipe(
          map((response: any) => {
-           console.log(response);
-            let idrol = response.idrol;
-           this.saveTokenLocalStorage(idrol);
-           return idrol;
+            // console.log(response);
+            // let idrol = response.idrol;
+            // console.log(idrol);
+            // this.saveTokenLocalStorage(idrol);
+            // return idrol;
+            this.saveUserDataLocalStorage(response.userData);
+            return response;
 
          }),catchError(this.handleError)
       );

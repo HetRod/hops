@@ -76,8 +76,25 @@ export class HomePage implements OnInit {
     this.authService.login(credentials).subscribe(
       response => {
         console.log(response);
-         this.router.navigate(['/company/']);
-         this.dismissLoading();
+        let idrol = response.userData.idrol
+        if (idrol === '2'){
+          this.router.navigate(['/company/']);
+          this.dismissLoading();
+        }else if(idrol === '3') {
+          let response2 = this.authService.orgLoad(credentials)
+          console.log(response2.userDataOrg)
+          for (let i=0; i<response2.userDataOrg.length; i++ ){
+            this.listOrg[i] = {
+              name: response2.userDataOrg[i].nombreempresa,
+              type: 'radio',
+              label: response2.userDataOrg[i].nombreempresa,
+              value: response2.userDataOrg[i].idempresa
+            }
+          }
+          this.presentAlertRadio();
+        }
+        // this.router.navigate(['/company/']);
+        //this.dismissLoading();
       },
       error => {
         this.dismissLoading();
