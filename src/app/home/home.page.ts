@@ -19,6 +19,7 @@ export class HomePage implements OnInit {
   public item: boolean;
   public auth: {};
   public errorMsg: string = 'Error Message.';
+  public listOrg: any[] = []
 
   ngOnInit() {
     this.item = false;
@@ -64,33 +65,69 @@ export class HomePage implements OnInit {
   }
 
   public login() {
-    // this.utils.submitEventGA('Login', 'click', 'Login click');
-    this.presentLoading();
-
-   
+    // this.presentLoading();
 
     let credentials = {
       username: this.loginForm.get('username').value,
       password: this.loginForm.get('password').value
     };
 
-    this.authService.login(credentials).subscribe(
-      response => {
-        console.log(response);
-        this.router.navigate(['/company/']);
-        this.dismissLoading();
-      },
-      error => {
-        this.dismissLoading();
-        this.presentAlert("Ops..Tenemos problemas para iniciar sesión",error)
+    // this.authService.login(credentials).subscribe(
+    //   response => {
+    //     console.log(response);
+    //     this.router.navigate(['/company/']);
+    //     this.dismissLoading();
+    //   },
+    //   error => {
+    //     this.dismissLoading();
+    //     this.presentAlert("Ops..Tenemos problemas para iniciar sesión",error)
+    //   }
+    // );
+
+    let response: any = this.authService.login(credentials);
+    let idrol = response.userData.idrol
+    if (idrol === '3'){
+      this.router.navigate(['/company/']);
+    }else{
+      let response2 = this.authService.orgLoad(credentials)
+      console.log(response2.userDataOrg)
+      for (let i=0; i<response2.userDataOrg.length; i++ ){
+        this.listOrg[i] = {
+          name: response2.userDataOrg[i].nombreempresa,
+          type: 'radio',
+          label: response2.userDataOrg[i].nombreempresa,
+          value: response2.userDataOrg[i].idempresa
+        }
       }
-    );
+      this.presentAlertRadio();
+    }
+    
+  }
 
-     
-     
+  async presentAlertRadio() {
 
-  
-  
+    const alert = await this.alertController.create({
+      header: 'Seleccione una Empresa',
+      inputs: this.listOrg,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (data:string) => {
+            
+            console.log(data);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 

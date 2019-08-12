@@ -1,11 +1,25 @@
 <ion-header>
-    <ion-toolbar >
+    <ion-toolbar class="toolbar">
       <ion-buttons slot="start">
         <ion-menu-button autoHide="false" ></ion-menu-button>
       </ion-buttons>
+      <ion-title>Mis Eventos</ion-title>
+      <ion-buttons slot="end">
+          <ion-icon slot="start" name="star"  color="ppal"></ion-icon>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+  <div style="    padding: 3rem;
+  height: 95vh;">
+    <p>{{ date | date: 'MMMM'}}</p>
+
+    <ion-list *ngFor="let event of events">
+      <ion-item (click)="detalles(event)">
+        <ion-label>{{ event.procedimientos }}</ion-label>
+      </ion-item>
+    </ion-list>
+
+  </div>
 </ion-content>
