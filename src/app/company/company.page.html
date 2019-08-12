@@ -20,13 +20,13 @@
           <ion-icon   name="arrow-dropright-circle" slot="start" color="confirmado"></ion-icon>
         </div>
         <div *ngIf="event.estado == 2">
-          <ion-icon   name="arrow-dropright-circle" slot="start" color="reservado"></ion-icon>
+          <ion-icon   name="albums" slot="start" color="reservado"></ion-icon>
         </div>
         <div *ngIf="event.estado == 3">
           <ion-icon   name="arrow-dropright-circle" slot="start" color="pendiente"></ion-icon>
         </div>
         <div *ngIf="event.estado == 4">
-          <ion-icon   name="arrow-dropright-circle" slot="start" color="completado"></ion-icon>
+          <ion-icon   name="albums" slot="start" color="completado"></ion-icon>
         </div>
         <ion-label >
           <h2>{{ event.espaciofisico }}</h2>
@@ -36,5 +36,22 @@
       </ion-item>
     </ion-list>
 
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+          <ion-tab-button tab="schedule">
+              <ion-icon name="arrow-dropleft"></ion-icon>
+            <ion-label>Mes Anterior</ion-label>
+          
+          </ion-tab-button>
+      
+      
+          <ion-tab-button tab="about">
+              <ion-icon name="arrow-dropright"></ion-icon>
+            <ion-label>Mes Siguiente</ion-label>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+
+   
   </div>
 </ion-content>
