@@ -120,7 +120,7 @@ export class HomePage implements OnInit {
         }, {
           text: 'Ok',
           handler: (data:string) => {
-            
+            this.router.navigate(['/company/'+ data]);
             console.log(data);
           }
         }
