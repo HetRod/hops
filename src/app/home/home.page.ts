@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
   async presentLoading() {
     this.loading = await this.loadingController.create({
       message: 'Por favor espere...',
-      duration: 7000
+      duration: 5000
     });
     await this.loading.present();
   }
@@ -75,14 +75,14 @@ export class HomePage implements OnInit {
    
     this.authService.login(credentials).subscribe(
       response => {
-        console.log(response);
+       // console.log(response);
         let idrol = response.userData.idrol
         if (idrol === '2'){
           this.router.navigate(['/company/']);
           this.dismissLoading();
         }else if(idrol === '3') {
           let response2 = this.authService.orgLoad(credentials)
-          console.log(response2.userDataOrg)
+        //  console.log(response2.userDataOrg)
           for (let i=0; i<response2.userDataOrg.length; i++ ){
             this.listOrg[i] = {
               name: response2.userDataOrg[i].nombreempresa,

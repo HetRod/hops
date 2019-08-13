@@ -1,11 +1,25 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>evendetail</ion-title>
+  <ion-toolbar class="toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false" ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Detalle Evento</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+<div class="general">
+    <div class="sala_estado">
+        <h3 class="ion-text-uppercase" _ngcontent-wfm-c1="" style="text-align: left;" > Sala 3 </h3>
+   </div>
+  
+  
   <ion-item >
-    <ion-label>{{ evento?.evento.idevento }}</ion-label>
+    <ion-label class="ion-text-uppercase">{{ evento?.evento.procedimientos }}</ion-label>
+    
   </ion-item>
+ 
+</div>
+  
+   
 </ion-content>

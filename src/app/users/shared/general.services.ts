@@ -184,7 +184,7 @@ export class AuthService {
     }
 
     public getUserData(): Promise<any> | any {
-      return this.storage.get('app.userData').then(val => {
+        return this.storage.get('app.userData').then(val => {
         const userData = val;
         return userData;
       });

@@ -37,7 +37,7 @@ export class CompanyPage implements OnInit {
       let response: any = this.authService.eventsLoad(data);
 
       this.events = response.eventos;
-      //  console.log(this.events);
+      // console.log(this.events);
       //  console.log(response);
     });
   }
@@ -46,5 +46,4 @@ export class CompanyPage implements OnInit {
     console.log(evento);
     this.router.navigate(['/evendetail'],{ state: {evento: evento } });
   }
-
 }

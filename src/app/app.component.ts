@@ -15,10 +15,13 @@ import { AuthService } from './users/shared/general.services';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  public date: Date = new Date();
+  public data: any;
+  
   public appPages = [
     {
       title: 'Inicio',
-      url: '/home',
+      url: '/company',
       icon: 'home'
     },
     {
@@ -29,7 +32,7 @@ export class AppComponent {
     {
       title: 'Cerrar Sesión',
       url: '/home',
-      icon: 'log-out'
+      icon: 'exit'
     }
   ];
 
@@ -43,10 +46,19 @@ export class AppComponent {
     this.initializeApp();
   }
 
+  
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.authService.getUserData().then(userData => {
+        this.data = {
+          nombres: userData.nombres,
+          apellidos: userData.apellidos,
+          rol: userData.idrol,
+          nombreempresa: userData.nombreempresa
+        };
+      });
     });
   }
 }

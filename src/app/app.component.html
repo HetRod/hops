@@ -2,21 +2,32 @@
   <ion-split-pane>
     <ion-menu type="overlay">
       <ion-header>
-        <ion-toolbar>
-          <ion-title>Menú</ion-title>
-        </ion-toolbar>
+        <img class="menu" src="/assets/images/logo2.png" alt="" />
+        <div class="userinfo"> 
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <img  src="/assets/images/user.png" alt="" />
+            </ion-thumbnail>
+            <ion-label class="user ion-text-uppercase">
+              <h3>{{ data?.nombres }} {{ data?.apellidos }}</h3>
+              <p>{{ data?.nombreempresa }}</p>
+            </ion-label>
+          </ion-item>
+        </div>
       </ion-header>
       <ion-content>
-        <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                {{p.title}}
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
+        <div>
+          <ion-list>
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+              <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+                <ion-icon slot="start" color="light" [name]="p.icon"></ion-icon>
+                <ion-label class="user"> 
+                  {{p.title}}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+        </div>
       </ion-content>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>
