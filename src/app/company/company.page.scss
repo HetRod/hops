@@ -34,6 +34,28 @@ ion-list {
   height: 95vh;
 }
 
+.bordered{
+  border-left: 1px solid;
+  border-left-width: 20px;
+}
+
+.confirmado {
+  border-left-color: #6963fc;
+}
+
+.reservado{
+  border-left-color: #cacaca;
+}
+
+
+.pendiente{
+  border-left-color: #fddb7f;
+}
+
+
+.completado{
+  border-left-color: #04d99d;
+}
 
 
 

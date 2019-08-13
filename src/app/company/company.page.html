@@ -15,25 +15,19 @@
     </div>
   
     <ion-list *ngFor="let event of events" >
-      <ion-item class="event-item" (click)="detalles(event)" >
-        <div *ngIf="event.estado == 1">
-          <ion-icon   name="arrow-dropright-circle" slot="start" color="confirmado"></ion-icon>
-        </div>
-        <div *ngIf="event.estado == 2">
-          <ion-icon   name="albums" slot="start" color="reservado"></ion-icon>
-        </div>
-        <div *ngIf="event.estado == 3">
-          <ion-icon   name="arrow-dropright-circle" slot="start" color="pendiente"></ion-icon>
-        </div>
-        <div *ngIf="event.estado == 4">
-          <ion-icon   name="albums" slot="start" color="completado"></ion-icon>
-        </div>
+      <ion-item class="event-item bordered"
+        [class.confirmado] = "event.estado == 1"
+        [class.reservado] = "event.estado == 2"
+        [class.pendiente] = "event.estado == 3"
+        [class.completado] = "event.estado == 4"
+        (click)="detalles(event)" >
         <ion-label >
           <h2>{{ event.espaciofisico }}</h2>
           <h3>{{ event.procedimientos }}</h3>
           <p>{{ event.fechahorainicio.substring(0,11) }} {{ event.fechahorainicio.substring(11,16) }} </p>
         </ion-label>
       </ion-item>
+      <br>
     </ion-list>
 
     <ion-tabs>
