@@ -17,14 +17,19 @@ import { AuthService } from './users/shared/general.services';
 export class AppComponent {
   public appPages = [
     {
-      title: 'Home',
+      title: 'Inicio',
       url: '/home',
       icon: 'home'
     },
     {
-      title: 'List',
+      title: 'Chat',
       url: '/list',
-      icon: 'list'
+      icon: 'chatbubbles'
+    },
+    {
+      title: 'Cerrar Sesión',
+      url: '/home',
+      icon: 'log-out'
     }
   ];
 

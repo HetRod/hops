@@ -65,42 +65,60 @@ export class HomePage implements OnInit {
   }
 
   public login() {
-    // this.presentLoading();
+     this.presentLoading();
 
     let credentials = {
       username: this.loginForm.get('username').value,
       password: this.loginForm.get('password').value
     };
 
-    // this.authService.login(credentials).subscribe(
-    //   response => {
-    //     console.log(response);
-    //     this.router.navigate(['/company/']);
-    //     this.dismissLoading();
-    //   },
-    //   error => {
-    //     this.dismissLoading();
-    //     this.presentAlert("Ops..Tenemos problemas para iniciar sesión",error)
-    //   }
-    // );
-
-    let response: any = this.authService.login(credentials);
-    let idrol = response.userData.idrol
-    if (idrol === '3'){
-      this.router.navigate(['/company/']);
-    }else{
-      let response2 = this.authService.orgLoad(credentials)
-      console.log(response2.userDataOrg)
-      for (let i=0; i<response2.userDataOrg.length; i++ ){
-        this.listOrg[i] = {
-          name: response2.userDataOrg[i].nombreempresa,
-          type: 'radio',
-          label: response2.userDataOrg[i].nombreempresa,
-          value: response2.userDataOrg[i].idempresa
+   
+    this.authService.login(credentials).subscribe(
+      response => {
+        console.log(response);
+        let idrol = response.userData.idrol
+        if (idrol === '2'){
+          this.router.navigate(['/company/']);
+          this.dismissLoading();
+        }else if(idrol === '3') {
+          let response2 = this.authService.orgLoad(credentials)
+          console.log(response2.userDataOrg)
+          for (let i=0; i<response2.userDataOrg.length; i++ ){
+            this.listOrg[i] = {
+              name: response2.userDataOrg[i].nombreempresa,
+              type: 'radio',
+              label: response2.userDataOrg[i].nombreempresa,
+              value: response2.userDataOrg[i].idempresa
+            }
+          }
+          this.presentAlertRadio();
         }
+        // this.router.navigate(['/company/']);
+        //this.dismissLoading();
+      },
+      error => {
+        this.dismissLoading();
+        this.presentAlert("Ops..Tenemos problemas para iniciar sesión",error)
       }
-      this.presentAlertRadio();
-    }
+    );
+
+    // let response: any = this.authService.login(credentials);
+    // let idrol = response.userData.idrol
+    // if (idrol === '2'){
+    //   this.router.navigate(['/company/']);
+    // }else{
+    //   let response2 = this.authService.orgLoad(credentials)
+    //   console.log(response2.userDataOrg)
+    //   for (let i=0; i<response2.userDataOrg.length; i++ ){
+    //     this.listOrg[i] = {
+    //       name: response2.userDataOrg[i].nombreempresa,
+    //       type: 'radio',
+    //       label: response2.userDataOrg[i].nombreempresa,
+    //       value: response2.userDataOrg[i].idempresa
+    //     }
+    //   }
+    //  this.presentAlertRadio();
+   // }
     
   }
 
