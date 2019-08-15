@@ -26,6 +26,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.item = false;
     this.loginForm.reset();
+    
   }
 
   public loading;
@@ -85,6 +86,7 @@ export class HomePage implements OnInit {
         let idrol = response.userData.idrol
         if (idrol === '2'){
           this.router.navigate(['/company/']);
+          console.log(response.userData);
           this.dismissLoading();
         }else if(idrol === '3') {
           let response2 = this.authService.orgLoad(credentials)
@@ -106,7 +108,7 @@ export class HomePage implements OnInit {
       error => {
         console.log(error.text);
         this.dismissLoading();
-        this.presentAlert("Ops..Tenemos problemas para iniciar sesión",error)
+        this.presentAlert("Ops..Tenemos problemas para iniciar sesión","Solicitud incorrecta en usuario y/o contraseña")
       }
     );
 

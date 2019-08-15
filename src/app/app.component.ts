@@ -31,11 +31,11 @@ export class AppComponent {
       url: '/list',
       icon: 'chatbubbles'
     },
-    // {
-    //   title: 'Cerrar Sesión',
-    //   url: '/home',
-    //   icon: 'exit'
-    // }
+     {
+       title: 'Notificaciones',
+       url: '/list',
+       icon: 'notifications'
+     }
   ];
 
   constructor(
@@ -69,6 +69,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+     
     });
   }
 
