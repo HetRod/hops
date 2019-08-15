@@ -7,7 +7,7 @@ import { AuthService } from '../users/shared/general.services';
 import { LoadingController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { Events } from '@ionic/angular';
-
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -18,9 +18,11 @@ import { Events } from '@ionic/angular';
 export class HomePage implements OnInit {
   public item: boolean;
   public auth: {};
+  public user
+  private storage:Storage
   public errorMsg: string = 'Error Message.';
   public listOrg: any[] = []
-
+  
   ngOnInit() {
     this.item = false;
     this.loginForm.reset();
@@ -32,9 +34,10 @@ export class HomePage implements OnInit {
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });
-
+  
  
   constructor(
+    public events: Events,
     public loadingController: LoadingController,
     private authService: AuthService,
     private router: Router,
@@ -75,7 +78,10 @@ export class HomePage implements OnInit {
    
     this.authService.login(credentials).subscribe(
       response => {
-       // console.log(response);
+        this.authService.saveUserDataLocalStorage(response.userData).then(()=>{
+          //Publico el evento user_login que ya se que app.component lo esta escuchando
+          this.events.publish('user_login');
+        });
         let idrol = response.userData.idrol
         if (idrol === '2'){
           this.router.navigate(['/company/']);
@@ -93,10 +99,12 @@ export class HomePage implements OnInit {
           }
           this.presentAlertRadio();
         }
-        // this.router.navigate(['/company/']);
-        //this.dismissLoading();
+        this.dismissLoading();
+        this.router.navigate(['/company/']);
+        this.dismissLoading();
       },
       error => {
+        console.log(error.text);
         this.dismissLoading();
         this.presentAlert("Ops..Tenemos problemas para iniciar sesión",error)
       }

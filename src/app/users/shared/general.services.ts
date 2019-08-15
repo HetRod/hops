@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { map, catchError } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 const API_URL = environment.api_url;
 
@@ -14,6 +15,7 @@ export class AuthService {
 
     constructor(
       public http: HttpClient,
+      private router: Router,
       private storage: Storage) { }
 
      public login(credentials: any): Observable<any> {
@@ -181,6 +183,13 @@ export class AuthService {
 
       return response;
 
+    }
+
+    public logout(): any {
+     
+      return this.storage.remove('app.userData').then(() => {
+        this.router.navigate(['/home']);
+      });
     }
 
     public getUserData(): Promise<any> | any {
