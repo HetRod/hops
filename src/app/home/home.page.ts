@@ -31,6 +31,8 @@ export class HomePage implements OnInit {
 
   public loading;
   public org;
+ 
+  
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -86,10 +88,12 @@ export class HomePage implements OnInit {
         });
         let idrol = response.userData.idrol
         if (idrol === '2'){
-          this.router.navigate(['/company/']);
+          let data:string = '3';
+          this.router.navigate(['/company'],{ state: { data} });
           console.log(response.userData);
           this.dismissLoading();
         }else if(idrol === '3') {
+          this.dismissLoading();
           let response2 = this.authService.orgLoad(credentials)
         //  console.log(response2.userDataOrg)
           for (let i=0; i<response2.userDataOrg.length; i++ ){
@@ -101,14 +105,13 @@ export class HomePage implements OnInit {
             }
 
           }
-          
-          console.log(response2.value);
+          this.org =response2.value;
           this.presentAlertRadio();
         }
        
-        this.dismissLoading();
-        this.router.navigate(['/company/']);
-        this.dismissLoading();
+        // this.dismissLoading();
+        // this.router.navigate(['/company/']);
+        // this.dismissLoading();
       },
       error => {
         console.log(error.text);
@@ -135,7 +138,7 @@ export class HomePage implements OnInit {
         }, {
           text: 'Ok',
           handler: (data:string) => {
-            this.router.navigate(['/company/'+ data]);
+            this.router.navigate(['/company'],{ state: {data } });
             console.log(data);
           }
         }

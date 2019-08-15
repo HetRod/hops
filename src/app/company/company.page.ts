@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
 import { AuthService } from '../users/shared/general.services';
 import { LoadingController } from '@ionic/angular';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-company',
@@ -10,19 +10,20 @@ import { Routes, RouterModule, Router } from '@angular/router';
   styleUrls: ['./company.page.scss'],
 })
 export class CompanyPage implements OnInit {
-
+  argumentos = null
   public date: Date = new Date();
   public events: any[];
   
 
   constructor(
+   
     public loadingController: LoadingController,
     private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    
+    this.argumentos = this.router.getCurrentNavigation().extras.state;
   }
 
   public loading;
@@ -52,14 +53,14 @@ export class CompanyPage implements OnInit {
   }
 
   getUserInfo(){
-    
+
     this.authService.getUserData().then(userData => {
     
       let data: any = {
         numdoc: userData.numerodocumento,
         open: false,
         rol: userData.idrol,
-        orgs: userData.idempresa,
+        orgs: this.argumentos.data,
         año: this.date.getFullYear(),
         mes: this.date.getMonth() + 1
       };

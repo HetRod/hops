@@ -16,7 +16,8 @@ const routes: Routes = [
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
   { path: 'company', loadChildren: './company/company.module#CompanyPageModule' },
-  { path: 'evendetail', loadChildren: './evendetail/evendetail.module#EvendetailPageModule' }
+  { path: 'evendetail', loadChildren: './evendetail/evendetail.module#EvendetailPageModule' },
+  { path: 'companies', loadChildren: './companies/companies.module#CompaniesPageModule' }
 
 ];
 

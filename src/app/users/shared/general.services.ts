@@ -62,15 +62,15 @@ export class AuthService {
 
     public eventsLoad(credentials: any): Observable<any> {
       let data = {
-        numdoc: '1018765432', 
+        numdoc: credentials.numdoc,
         open: false, 
-        rol:'2',
-        orgs:'3',
-        ano:'2019',
-        mes:'8'
+        rol: credentials.rol,
+        orgs: credentials.orgs,
+        ano: credentials.año,
+        mes:credentials.mes
       };
      
-      
+      console.log(data);
       return this.http
       .post(`http://54.233.178.103/Hops-Api/Eventos/cargarEvento.php`, data).pipe(
         map((response: any) => {
