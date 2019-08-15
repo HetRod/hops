@@ -21,6 +21,7 @@ export class CompanyPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    
   }
 
   ionViewWillEnter() {
@@ -37,8 +38,8 @@ export class CompanyPage implements OnInit {
       let response: any = this.authService.eventsLoad(data);
 
       this.events = response.eventos;
-       console.log(this.events);
-        console.log(response);
+      // console.log(this.events);
+      //  console.log(response);
     });
   }
 

@@ -29,3 +29,28 @@ ion-content{
   .sala_estado{
     margin-top: 75px;
   }
+
+  
+.bordered{
+  border-bottom: 3px solid;
+  border-color: #6963fc;
+  
+}
+
+.confirmado {
+  border-bottom-color: #6963fc;
+}
+
+.reservado{
+  border-bottom-color: #cacaca;
+}
+
+
+.pendiente{
+  border-bottom-color: #fddb7f;
+}
+
+
+.completado{
+  border-bottom-color: #04d99d;
+}
