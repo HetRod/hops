@@ -11,6 +11,7 @@ const API_URL = environment.api_url;
 @Injectable()
 export class AuthService {
     public isLoggedIn: boolean;
+    public URL:any;
     userData: any;
 
     constructor(
@@ -59,6 +60,19 @@ export class AuthService {
       this.saveUserDataLocalStorage(response.userData);
       return response;
     }*/
+
+    public cancelar (id: any):any{
+      this.URL = "http://54.233.178.103/Hops-Api/Eventos/CancelarEvento.php?id=" + id;
+     
+      return this.http
+      .get(this.URL,id).pipe(
+        map((response: any) => {
+           
+           return response;
+
+        }),catchError(this.handleError)
+     );
+    }
 
     public eventsLoad(credentials: any): Observable<any> {
       let data = {
