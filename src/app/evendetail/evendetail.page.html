@@ -11,41 +11,45 @@
 <div class="general">
    
     <ion-item>
-      <h3 class="ion-text-uppercase" _ngcontent-wfm-c1="" style="text-align: left;" > Sala 3 </h3>
-      <ion-note slot="end" color="dark" class="bordered">Confirmado</ion-note>
+      <h3 class="ion-text-uppercase" _ngcontent-wfm-c1="" style="text-align: left;" > {{ evento?.evento.espaciofisico }} </h3>
+      <ion-note *ngIf="evento?.evento.estado == 1"  slot="end" color="dark" class="confirmado"> 
+        Confirmado
+      </ion-note>
+      <ion-note *ngIf="evento?.evento.estado == 2"  slot="end" color="dark" class="reservado"> 
+        Reservado
+      </ion-note>
+      <ion-note *ngIf="evento?.evento.estado == 3"  slot="end" color="dark" class="pendiente"> 
+        Pendiente
+      </ion-note>
+      <ion-note *ngIf="evento?.evento.estado == 4"  slot="end" color="dark" class="completado"> 
+        Completado
+      </ion-note>
+     
+      
     </ion-item>
     <ion-item>
-      <h5 class="ion-text-uppercase" _ngcontent-wfm-c1="" style="text-align: left;" >DESCOMPRESION NERVIO OPTICO VIA ENDOSCOPICA </h5>
-     
+      <h5 class="ion-text-uppercase" _ngcontent-wfm-c1="" style="text-align: left;" >{{ evento?.evento.procedimientos }} </h5>
     </ion-item>
-  
-  
-  <!-- <ion-item >
-    <ion-label class="ion-text-uppercase">{{ evento?.evento.procedimientos }}</ion-label> 
-   
-  </ion-item> -->
-  <ion-item>
-    <ion-label class="ion-text-capitalize">PACIENTE: 
-      <h3>Tomás Guerrero</h3>
-
-    </ion-label>
-  
-  </ion-item>
-  <ion-item>
-    <ion-label class="ion-text-capitalize">CIRUJANO/S: </ion-label>
-   
-    <h6>Alvaro Silva; Juan Perez</h6>
-   
-  </ion-item>
-  <ion-item>
-    <ion-label class="ion-text-capitalize">ANESTESIÓLOGO: Mateo Fuentes</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-label class="ion-text-capitalize">OTROS PARTICIPANTES:</ion-label>
-    <p>
-      Mateo Fuentes
-    </p>
-  </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-capitalize">PACIENTE: 
+        <h2 style="text-align: right;">{{ evento?.evento.paciente }}</h2>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-capitalize">CIRUJANO/S: 
+        <h2 style="text-align: right;">{{ evento?.evento.cirujanos }}</h2>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-capitalize">ANESTESIÓLOGO: 
+        <h2 style="text-align: right;">{{ evento?.evento.anestesiologo }}</h2>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-text-capitalize">OTROS PARTICIPANTES:
+          <h2 style="text-align: right;"> {{ evento?.evento.apoyo }}</h2>
+      </ion-label>
+    </ion-item>
  
 </div>
   
@@ -54,14 +58,14 @@
 <ion-footer>
   <ion-toolbar color="light">
     <ion-buttons slot="secondary" color="">
-      <ion-button>
-        <ion-icon name="exit"></ion-icon>
-        <ion-label>Cancelar Evento</ion-label>
+      <ion-button color="danger">
+        <ion-icon name="close"></ion-icon>
+        <ion-label>Cancelar </ion-label>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="primary">
       <ion-button color="primary">
-        <ion-label>Completar Evento</ion-label>
+        <ion-label>Completar </ion-label>
         <ion-icon name="checkmark-circle"></ion-icon>
       </ion-button>
     </ion-buttons>

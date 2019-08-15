@@ -31,26 +31,27 @@ ion-content{
   }
 
   
-.bordered{
+
+
+.confirmado {
   border-bottom: 3px solid;
   border-color: #6963fc;
   
 }
 
-.confirmado {
-  border-bottom-color: #6963fc;
-}
-
 .reservado{
-  border-bottom-color: #cacaca;
+  border-bottom: 3px solid;
+  border-color: #cacaca;
 }
 
 
 .pendiente{
-  border-bottom-color: #fddb7f;
+  border-bottom: 3px solid;
+  border-color: #fddb7f;
 }
 
 
 .completado{
-  border-bottom-color: #04d99d;
+  border-bottom: 3px solid;
+  border-color: #04d99d;
 }

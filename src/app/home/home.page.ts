@@ -30,6 +30,7 @@ export class HomePage implements OnInit {
   }
 
   public loading;
+  public org;
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -98,9 +99,13 @@ export class HomePage implements OnInit {
               label: response2.userDataOrg[i].nombreempresa,
               value: response2.userDataOrg[i].idempresa
             }
+
           }
+          
+          console.log(response2.value);
           this.presentAlertRadio();
         }
+       
         this.dismissLoading();
         this.router.navigate(['/company/']);
         this.dismissLoading();
@@ -112,24 +117,6 @@ export class HomePage implements OnInit {
       }
     );
 
-    // let response: any = this.authService.login(credentials);
-    // let idrol = response.userData.idrol
-    // if (idrol === '2'){
-    //   this.router.navigate(['/company/']);
-    // }else{
-    //   let response2 = this.authService.orgLoad(credentials)
-    //   console.log(response2.userDataOrg)
-    //   for (let i=0; i<response2.userDataOrg.length; i++ ){
-    //     this.listOrg[i] = {
-    //       name: response2.userDataOrg[i].nombreempresa,
-    //       type: 'radio',
-    //       label: response2.userDataOrg[i].nombreempresa,
-    //       value: response2.userDataOrg[i].idempresa
-    //     }
-    //   }
-    //  this.presentAlertRadio();
-   // }
-    
   }
 
   async presentAlertRadio() {
