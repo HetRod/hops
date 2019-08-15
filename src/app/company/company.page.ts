@@ -39,13 +39,8 @@ export class CompanyPage implements OnInit {
       let response: any = this.authService.eventsLoad(data);
 
       this.events = response.eventos;
-<<<<<<< HEAD
-      //  console.log(this.events);
-      //   console.log(response);
-=======
       // console.log(this.events);
       //  console.log(response);
->>>>>>> 89344f4ca7ddf2b5834cdb2e3269ea55499b408e
     });
   }
 
