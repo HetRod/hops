@@ -14,6 +14,7 @@
         <h3  _ngcontent-wfm-c1="" style="
         text-align: center;" >{{ date | date: 'MMMM'}}</h3>
     </div>
+   
   
     <ion-list *ngFor="let event of events" >
       <ion-item class="event-item bordered"
@@ -32,11 +33,12 @@
     </ion-list>
 
   </div>
+  
 </ion-content>
 <ion-footer>
   <ion-toolbar color="light">
     <ion-buttons slot="secondary">
-      <ion-button>
+      <ion-button (click)="previous()">
         <ion-icon name="arrow-dropleft"></ion-icon>
         <ion-label>Mes Anterior</ion-label>
       </ion-button>
