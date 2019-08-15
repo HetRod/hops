@@ -10,7 +10,7 @@ const API_URL = environment.api_url;
 @Injectable()
 export class AuthService {
     public isLoggedIn: boolean;
-  userData: any;
+    userData: any;
 
     constructor(
       public http: HttpClient,
@@ -58,7 +58,7 @@ export class AuthService {
       return response;
     }*/
 
-    public eventsLoad(credentials: any): Observable<any> {
+    public eventsLoad(credentials: any)  {
       let data = {
         numdoc: credentials.numdoc,
         open: false,
@@ -68,22 +68,17 @@ export class AuthService {
         mes: credentials.mes
       };
      
-      
-      return this.http
-      .post(`http://54.233.178.103/Hops-Api/Eventos/cargarEvento.php`, data).pipe(
-         map((response: any) => {
-            // console.log(response);
-            // let idrol = response.idrol;
-             
-            // this.saveTokenLocalStorage(idrol);
-            // return idrol;
-            //this.saveUserDataLocalStorage(response.userData);
-            
-            return response;
-            
-         }),catchError(this.handleError)
-      );
-      // const response: any = {
+      debugger;
+      this.http.post(`http://54.233.178.103/Hops-Api/Eventos/cargarEvento.php`, data).subscribe(
+        data => {
+          console.log(data);
+        },error =>{
+          console.log(error);
+        }
+      )
+        
+      ;
+            // const response: any = {
       //     eventos: [
       //       {
       //         0: '10',

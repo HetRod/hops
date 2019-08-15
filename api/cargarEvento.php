@@ -32,20 +32,20 @@ $database = new Database();
 $db = $database->getConnection();
  
 // prepare product object
-$Sesion = new Loadeventos($db);
+$Loadeventos = new Loadeventos($db);
 
 $data = json_decode(file_get_contents("php://input"));
 // get id of product to be edited
-$Sesion->numdoc = $data->numdoc;
-$Sesion->open = $data->open;
-$Sesion->rol = $data->rol;
-$Sesion->orgs = $data->orgs;
-$Sesion->ano = $data->ano;
-$Sesion->mes = $data->mes;
-$Sesion->Sala = $data->Sala;
+$Loadeventos->numdoc = $data->numdoc;
+$Loadeventos->open = $data->open;
+$Loadeventos->rol = $data->rol;
+$Loadeventos->orgs = $data->orgs;
+$Loadeventos->ano = $data->ano;
+$Loadeventos->mes = $data->mes;
+$Loadeventos->Sala = $data->Sala;
 // set product property values
 
-if ($Sesion->authEventos()) {
+if ($Loadeventos->authEventos()) {
 
 
 // set response code - 200 ok
