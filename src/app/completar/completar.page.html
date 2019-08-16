@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar class="toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Completar Evento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form #form="ngForm" (ngSubmit)="login(form)">
+  <div class="atras">
+    <ion-item>
+      <ion-button slot="end" color="light" (click)="back(evento?.evento)">
+        <ion-icon name="arrow-back"></ion-icon>
+        <ion-label class="back">Volver </ion-label>
+      </ion-button>
+    </ion-item>
+  </div>
+  
+    <div class="fecha">
+      <ion-item>
+        <ion-label>Hora Inicio</ion-label>
+        <ion-datetime value="1990-02-19" ></ion-datetime>
+        <ion-datetime
+          display-format="h:mm A"
+          picker-format="h:mm A"
+          value="1990-02-19T07:43Z"
+          name="horainicio"
+        ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Hora Fin</ion-label>
+        <ion-datetime value="1990-02-19" ></ion-datetime>
+        <ion-datetime
+          display-format="h:mm A"
+          picker-format="h:mm A"
+          value="1990-02-19T07:43Z"
+          name="horafin"
+        ></ion-datetime>
+      </ion-item>
+    </div>
+    <div class="texto">
+      <ion-item>
+        <ion-textarea placeholder="Ingrese sus observaciones" name="observaciones"></ion-textarea>
+      </ion-item>
+    </div>
+    <div class="list">
+      <input type="radio" name="destino" value="alta" />
+        De Alta
+        <i class="radio-icon ion-checkmark" style="margin-right: 35px;"></i>
+      <input type="radio" name="destino" value="hops" />
+        Hospitalización
+        <i class="radio-icon ion-checkmark" style="margin-right: 35px;"></i>
+      <input type="radio" name="destino" value="uci"/>
+        UCI
+        <i class="radio-icon ion-checkmark"></i>
+    </div>
+    <div class="guardar">
+        <ion-button expand="block" color="light"  type="submit" [disabled]="form.invalid">
+            <ion-label color="primary" >Guardar </ion-label>
+            <ion-icon color="primary" slot="icon-only" name="checkmark-circle"></ion-icon>
+          </ion-button>
+
+    </div>
+
+  </form>
+
+
+
+  
+     
+       
+    
+    </ion-content>
+     
+   
+

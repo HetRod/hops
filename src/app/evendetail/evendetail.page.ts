@@ -49,6 +49,11 @@ export class EvendetailPage implements OnInit {
     this.router.navigate(['/company'],{ state: { data} });
   }
 
+  complete(evento){
+    console.log(evento);
+    this.router.navigate(['/completar'],{ state: {evento: evento } });
+  }
+
 
 
   async presentAlertConfirm(id,idempresa) {

@@ -1,0 +1,84 @@
+ion-content{
+    --ion-background-color:#ffffff;
+  }
+  
+  ion-toolbar{
+    --background:#2d1d5a;
+  }
+  
+  ion-item {
+    --padding-left: 0px;
+  }
+  
+  ion-title{
+    --color: #ffffff;
+  }
+  
+  ion-menu-button {
+    --color: #ffffff;
+  }
+  
+  ion-icon {
+    margin: 5px;
+  }
+
+  .general {
+      margin:25px;
+  }
+
+  .sala_estado{
+    margin-top: 75px;
+  }
+
+  .back{
+    text-transform: uppercase;
+  }
+
+
+  .confirmado {
+    border-bottom: 3px solid;
+    border-color: #6963fc;
+    
+  }
+
+  .reservado{
+    border-bottom: 3px solid;
+    border-color: #cacaca;
+  }
+
+
+  .pendiente{
+    border-bottom: 3px solid;
+    border-color: #fddb7f;
+  }
+
+
+  .completado{
+    border-bottom: 3px solid;
+    border-color: #04d99d;
+  }
+
+  .atras{
+    margin-bottom: 30px;
+    margin-top: 4px;
+  }
+
+  .fecha{
+    margin-bottom: 40px;
+  }
+
+  .texto{
+    border-left: 1px solid;
+    border: groove;
+    margin: 15px;
+  }
+
+  .list{
+    margin-top: 50px;
+    margin: 15px;
+  }
+
+  .guardar{
+    margin-top: 150px;
+    
+  }

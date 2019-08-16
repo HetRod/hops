@@ -40,6 +40,20 @@ export class AuthService {
       );
     }
 
+    public recuperar(credentials: any): any {
+      let data = {
+        username: credentials.username,
+        password: credentials.password
+      };
+
+      return this.http
+      .post(`http://54.233.178.103/Hops-Api/Eventos/Login/Recupera.php`, data).pipe(
+         map((response: any) => {
+            return response;
+         }),catchError(this.handleError)
+      );
+    }
+
     /*
     public login(credentials: any): any {
       let response: any = {

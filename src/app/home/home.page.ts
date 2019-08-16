@@ -148,6 +148,30 @@ export class HomePage implements OnInit {
     await alert.present();
   }
 
+  forgot(){
+    let credentials = {
+      username: this.loginForm.get('username').value,
+      password: this.loginForm.get('password').value
+    };
+
+   if(credentials.username == null){
+      this.presentAlert("Error!!","Debe ingresar su usuario o correo para recuperar la contraseña");
+      
+   }else{
+    
+      this.authService.recuperar(credentials).subscribe(
+        response => {
+          this.presentAlert("Hecho!!","Se le ha enviado un correo");
+        },
+        error => {
+          console.log(error);
+          this.presentAlert("Error","El correo no existe");
+        }
+      );
+      
+   }
+  }
+
 
  
 
