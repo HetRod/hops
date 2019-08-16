@@ -10,8 +10,9 @@
 <ion-content>
 <div class="general">
     <ion-item>
-      <ion-button  slot="end"  color="light">
-        <ion-icon color="danger" name="arrow-back"></ion-icon>
+      <ion-button slot="end" color="light" (click)="back(evento?.evento.idempresa)">
+        <ion-icon name="arrow-back"></ion-icon>
+        <ion-label class="back">Volver </ion-label>
       </ion-button>
     </ion-item>
     <ion-item>

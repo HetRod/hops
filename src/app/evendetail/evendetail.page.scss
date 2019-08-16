@@ -30,28 +30,30 @@ ion-content{
     margin-top: 75px;
   }
 
-  
+  .back{
+    text-transform: uppercase;
+  }
 
 
-.confirmado {
-  border-bottom: 3px solid;
-  border-color: #6963fc;
-  
-}
+  .confirmado {
+    border-bottom: 3px solid;
+    border-color: #6963fc;
+    
+  }
 
-.reservado{
-  border-bottom: 3px solid;
-  border-color: #cacaca;
-}
-
-
-.pendiente{
-  border-bottom: 3px solid;
-  border-color: #fddb7f;
-}
+  .reservado{
+    border-bottom: 3px solid;
+    border-color: #cacaca;
+  }
 
 
-.completado{
-  border-bottom: 3px solid;
-  border-color: #04d99d;
-}
+  .pendiente{
+    border-bottom: 3px solid;
+    border-color: #fddb7f;
+  }
+
+
+  .completado{
+    border-bottom: 3px solid;
+    border-color: #04d99d;
+  }

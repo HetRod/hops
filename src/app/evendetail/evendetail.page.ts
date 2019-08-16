@@ -43,6 +43,12 @@ export class EvendetailPage implements OnInit {
     
   }
 
+  back(id){
+   
+    let data:string = id;
+    this.router.navigate(['/company'],{ state: { data} });
+  }
+
   async presentAlertConfirm(id) {
 
     const alert = await this.alertController.create({
