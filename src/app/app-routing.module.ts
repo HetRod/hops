@@ -17,6 +17,7 @@ const routes: Routes = [
   },
   { path: 'company', loadChildren: './company/company.module#CompanyPageModule' },
   { path: 'evendetail', loadChildren: './evendetail/evendetail.module#EvendetailPageModule' },
+  { path: 'completar', loadChildren: './completar/completar.module#CompletarPageModule' },
   
 
 ];

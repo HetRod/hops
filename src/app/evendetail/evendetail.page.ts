@@ -37,9 +37,9 @@ export class EvendetailPage implements OnInit {
     console.log(this.evento);
   }
 
-  cancel(id){
+  cancel(id,idempresa){
     console.log(id);
-    this.presentAlertConfirm(id);
+    this.presentAlertConfirm(id,idempresa);
     
   }
 
@@ -49,11 +49,13 @@ export class EvendetailPage implements OnInit {
     this.router.navigate(['/company'],{ state: { data} });
   }
 
-  async presentAlertConfirm(id) {
+
+
+  async presentAlertConfirm(id,idempresa) {
 
     const alert = await this.alertController.create({
-      header: 'Atención',
-      message: '¿Está seguro que quiere cancelar este evento',
+      header: 'Estimado Usuario:',
+      message: '¿Está seguro que quiere cancelar este evento?',
       buttons: [{
         text: 'Cancelar',
         role: 'cancelar',
@@ -67,6 +69,10 @@ export class EvendetailPage implements OnInit {
           this.authService.cancelar(id).subscribe(
             response =>{
               console.log(response);
+              this.presentAlert("Éxito!!","El evento ha sido cancelado");
+              let data:string = idempresa;
+              this.router.navigate(['/company'],{ state: { data} });
+
             },error => {
               console.log(error.text);
              
