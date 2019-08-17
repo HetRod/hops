@@ -5,14 +5,12 @@ import { IonicStorageModule } from '@ionic/storage';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
-
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './users/shared/general.services';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -20,7 +18,7 @@ import { AuthService } from './users/shared/general.services';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-   
+    FormsModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,

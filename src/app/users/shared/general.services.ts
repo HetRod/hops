@@ -88,6 +88,27 @@ export class AuthService {
      );
     }
 
+    public completar ():any{
+      // let data = {
+      //   horainicio: credentials.horainicio.substring(11,16),
+      //   fechainicio: credentials.fechainicio.substring(0,10),
+      //   horafin: credentials.horainicio.substring(11,16),
+      //   fechafin: credentials.fechainicio.substring(0,10),
+      //   observaciones: credentials.observaciones,
+      //   destino: credentials.destino
+      // };
+      this.URL = "http://54.233.178.103/Hops-Api-noti/Eventos/ConfirmarEvento.php?id=1187&obs=aa&hi=2019-08-02 02:00&hf=2019-08-02 04:00&destino=1";
+     
+      return this.http
+      .get(this.URL,'1').pipe(
+        map((response: any) => {
+           
+           return response;
+
+        }),catchError(this.handleError)
+     );
+    }
+
     public eventsLoad(credentials: any): Observable<any> {
       let data = {
         numdoc: credentials.numdoc,
