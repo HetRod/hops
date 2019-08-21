@@ -21,22 +21,23 @@
   
     <div class="fecha">
       <ion-item>
-        <ion-label>Hora Inicio</ion-label>
-        <ion-datetime value="1990-02-19" formControlName="fechainicio"></ion-datetime>
+     
+        <ion-label>Fecha-Hora Inicio</ion-label>
+       
+        <ion-datetime displayFormat="YYYY/MM/DD"  formControlName="fechainicio" [ngModel]="fechaini"></ion-datetime>
+       
         <ion-datetime formControlName="horainicio"
-          display-format="h:mm A"
-          picker-format="h:mm A"
-          value="1990-02-19T07:43Z"
-         
-        ></ion-datetime>
+          display-format="HH:mm"
+          picker-format="HH:mm"
+          [ngModel]="horaini"> </ion-datetime>
       </ion-item>
       <ion-item>
-        <ion-label>Hora Fin</ion-label>
-        <ion-datetime value="1990-02-19" formControlName="fechafin"></ion-datetime>
+        <ion-label>Fecha-Hora Fin</ion-label>
+        <ion-datetime displayFormat="YYYY/MM/DD" formControlName="fechafin" [ngModel]="fechafin"></ion-datetime>
         <ion-datetime formControlName="horafin"
-          display-format="h:mm A"
-          picker-format="h:mm A"
-          value="1990-02-19T07:43Z"
+          display-format="HH:mm"
+          picker-format="HH:mm"
+          [ngModel]="horafin"
          
         ></ion-datetime>
       </ion-item>
@@ -47,18 +48,18 @@
       </ion-item>
     </div>
     <div class="list">
-      <input type="radio" formControlName="destino" value="alta" />
+      <input type="radio" formControlName="destino" value="1" />
         De Alta
         <i class="radio-icon ion-checkmark" style="margin-right: 35px;"></i>
-      <input type="radio" formControlName="destino" value="hops" />
+      <input type="radio" formControlName="destino" value="2" />
         Hospitalización
         <i class="radio-icon ion-checkmark" style="margin-right: 35px;"></i>
-      <input type="radio" formControlName="destino" value="uci"/>
+      <input type="radio" formControlName="destino" value="3"/>
         UCI
         <i class="radio-icon ion-checkmark"></i>
     </div>
     <div class="guardar">
-        <ion-button expand="block" color="light" (click)="login()"  >
+        <ion-button expand="block" color="light" (click)="login(evento?.evento.idevento,evento?.evento.idempresa)">
             <ion-label color="primary" >Guardar </ion-label>
             <ion-icon color="primary" slot="icon-only" name="checkmark-circle"></ion-icon>
           </ion-button>

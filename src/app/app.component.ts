@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 // Importamos el objeto de eventos que pertenece a angular
 import { AlertController, Events } from '@ionic/angular';
-import {
-  Router
-} from '@angular/router';
+import { FCM } from '@ionic-native/fcm/ngx';
+import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -47,13 +46,33 @@ export class AppComponent {
     // Declaro la variable de eventos
     public events: Events,
     private storage : Storage,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private fcm: FCM
   ) {
     this.initializeApp();
     // Me suscribo a un evento llamado user_login, este evento puede ser emitito por cualquier otro componente 
     this.events.subscribe('user_login', () => {
       //Si el evento sucede hago lo que quiera
       this.loggedIn();
+    });
+
+    this.fcm.getToken().then(token => {
+      console.log(token);
+    });
+
+    this.fcm.onTokenRefresh().subscribe(token => {
+      console.log(token);
+    });
+
+    this.fcm.onNotification().subscribe(data => {
+      console.log(data);
+      if (data.wasTapped) {
+        console.log('Received in background');
+        this.router.navigate([data.landing_page, data.price]);
+      } else {
+        console.log('Received in foreground');
+        this.router.navigate([data.landing_page, data.price]);
+      }
     });
 
   }

@@ -10,7 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './users/shared/general.services';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 
 
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: ['sqlite', 'websql', 'indexeddb']
@@ -32,6 +34,7 @@ import { FormsModule } from '@angular/forms';
     StatusBar,
     AuthService,
     SplashScreen,
+    FCM,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: LOCALE_ID, useValue: 'es-Ar' }
   ],

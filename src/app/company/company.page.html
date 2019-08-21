@@ -18,10 +18,10 @@
   
     <ion-list *ngFor="let event of events" >
       <ion-item class="event-item bordered"
-        [class.confirmado] = "event.estado == 1"
-        [class.reservado] = "event.estado == 2"
-        [class.pendiente] = "event.estado == 3"
-        [class.completado] = "event.estado == 4"
+        [class.confirmado] = "event.estado == 2"
+        [class.reservado] = "event.estado == 4"
+        [class.pendiente] = "event.estado == 1"
+        [class.completado] = "event.estado == 3"
         (click)="detalles(event)" >
         <ion-label >
           <h2>{{ event.espaciofisico }}</h2>

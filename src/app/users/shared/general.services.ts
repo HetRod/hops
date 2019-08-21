@@ -6,6 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 
+
 const API_URL = environment.api_url;
 
 @Injectable()
@@ -26,7 +27,7 @@ export class AuthService {
       };
 
       return this.http
-      .post(`http://54.233.178.103/Hops-Api/Eventos/Login/Login.php`, data).pipe(
+      .post(`http://54.233.178.103/Hops-Api-noti/Eventos/Login/Login.php`, data).pipe(
          map((response: any) => {
             // console.log(response);
             // let idrol = response.idrol;
@@ -47,7 +48,7 @@ export class AuthService {
       };
 
       return this.http
-      .post(`http://54.233.178.103/Hops-Api/Eventos/Login/Recupera.php`, data).pipe(
+      .post(`http://54.233.178.103/Hops-Api-noti/Eventos/Login/Recupera.php`, data).pipe(
          map((response: any) => {
             return response;
          }),catchError(this.handleError)
@@ -76,7 +77,7 @@ export class AuthService {
     }*/
 
     public cancelar (id: any):any{
-      this.URL = "http://54.233.178.103/Hops-Api/Eventos/CancelarEvento.php?id=" + id;
+      this.URL = "http://54.233.178.103/Hops-Api-noti/Eventos/CancelarEvento.php?id=" + id;
      
       return this.http
       .get(this.URL,id).pipe(
@@ -88,26 +89,40 @@ export class AuthService {
      );
     }
 
-    public completar ():any{
-      // let data = {
-      //   horainicio: credentials.horainicio.substring(11,16),
-      //   fechainicio: credentials.fechainicio.substring(0,10),
-      //   horafin: credentials.horainicio.substring(11,16),
-      //   fechafin: credentials.fechainicio.substring(0,10),
-      //   observaciones: credentials.observaciones,
-      //   destino: credentials.destino
-      // };
-      this.URL = "http://54.233.178.103/Hops-Api-noti/Eventos/ConfirmarEvento.php?id=1187&obs=aa&hi=2019-08-02 02:00&hf=2019-08-02 04:00&destino=1";
-     
+    public completar(credentials: any):any{
+      let data = {
+        idevento: credentials.idevento,
+        idempresa: credentials.idempresa,
+        horainicio: credentials.horainicio,
+        fechainicio: credentials.fechainicio.substring(0,10),
+        horafin: credentials.horafin,
+        fechafin: credentials.fechafin.substring(0,10),
+        observaciones: credentials.observaciones,
+        destino: credentials.destino
+      };
+
+      //  console.log(data.horainicio);
+      //  console.log(data.fechainicio);
+      //  console.log(data.horafin);
+      //  console.log(data.fechafin);
+      //  console.log(data.observaciones);
+      //  console.log(data.destino);
+
+      //this.URL = "http://54.233.178.103/Hops-Api-noti/Eventos/ConfirmarEvento.php?id=1187&obs=aa&hi=2019-08-02 02:00&hf=2019-08-02 04:00&destino=1";
+
+    this.URL = "http://54.233.178.103/Hops-Api-noti/Eventos/ConfirmarEvento.php?id=" +data.idevento+"&obs="+ data.observaciones +"&hi=" + data.fechainicio +" "+ data.horainicio + "&hf="  + data.fechafin +" "+ data.horafin + "&destino=" + data.destino;
+
+    // console.log(this.URL);
+    //  return true;
       return this.http
-      .get(this.URL,'1').pipe(
+      .get(this.URL).pipe(
         map((response: any) => {
            
            return response;
 
         }),catchError(this.handleError)
-     );
-    }
+      );
+     }
 
     public eventsLoad(credentials: any): Observable<any> {
       let data = {
@@ -121,7 +136,7 @@ export class AuthService {
      
       console.log(data);
       return this.http
-      .post(`http://54.233.178.103/Hops-Api/Eventos/cargarEvento.php`, data).pipe(
+      .post(`http://54.233.178.103/Hops-Api-noti/Eventos/CargarEvento.php`, data).pipe(
         map((response: any) => {
            // console.log(response);
            return response;

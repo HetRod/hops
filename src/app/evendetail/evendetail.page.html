@@ -17,16 +17,16 @@
       </ion-item>
       <ion-item>
         <h3 class="ion-text-uppercase" _ngcontent-wfm-c1="" style="text-align: left;" > {{ evento?.evento.espaciofisico }} </h3>
-        <ion-note *ngIf="evento?.evento.estado == 1"  slot="end" color="dark" class="confirmado"> 
+        <ion-note *ngIf="evento?.evento.estado == 2"  slot="end" color="dark" class="confirmado"> 
           Confirmado
         </ion-note>
-        <ion-note *ngIf="evento?.evento.estado == 2"  slot="end" color="dark" class="reservado"> 
+        <ion-note *ngIf="evento?.evento.estado == 4"  slot="end" color="dark" class="reservado"> 
           Reservado
         </ion-note>
-        <ion-note *ngIf="evento?.evento.estado == 3"  slot="end" color="dark" class="pendiente"> 
+        <ion-note *ngIf="evento?.evento.estado == 1"  slot="end" color="dark" class="pendiente"> 
           Pendiente
         </ion-note>
-        <ion-note *ngIf="evento?.evento.estado == 4"  slot="end" color="dark" class="completado"> 
+        <ion-note *ngIf="evento?.evento.estado == 3"  slot="end" color="dark" class="completado"> 
           Completado
         </ion-note>
       </ion-item>
@@ -35,7 +35,7 @@
       </ion-item>
       <ion-item>
           <ion-label class="ion-text-capitalize">FECHA EVENTO: 
-            <h2 style="text-align: right;">{{ evento?.evento.fechaevento.substring(0,10)}}</h2>
+            <h2 style="text-align: right;">{{ evento?.evento.fechahorainicio.substring(0,16)}}</h2>
           </ion-label>
         </ion-item>
       <ion-item>
