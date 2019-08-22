@@ -65,13 +65,13 @@
   </ion-content>
   <ion-footer>
     <ion-toolbar color="light">
-      <ion-buttons slot="secondary" >
+      <ion-buttons *ngIf="evento?.evento.estado != 3" slot="secondary" >
         <ion-button  slot="start" color="danger" (click)="cancel(evento?.evento.idevento,evento?.evento.idempresa)">
           <ion-icon name="close"></ion-icon>
           <ion-label>Cancelar </ion-label>
         </ion-button>
       </ion-buttons>
-      <ion-buttons slot="primary">
+      <ion-buttons *ngIf="evento?.evento.estado == 2" slot="primary">
         <ion-button   slot="end"  color="primary" (click)="complete(evento?.evento)">
           <ion-label>Completar </ion-label>
           <ion-icon name="checkmark-circle"></ion-icon>
