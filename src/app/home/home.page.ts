@@ -94,19 +94,38 @@ export class HomePage implements OnInit {
           this.dismissLoading();
         }else if(idrol === '3') {
           this.dismissLoading();
-          let response2 = this.authService.orgLoad(credentials)
-        //  console.log(response2.userDataOrg)
-          for (let i=0; i<response2.userDataOrg.length; i++ ){
-            this.listOrg[i] = {
-              name: response2.userDataOrg[i].nombreempresa,
-              type: 'radio',
-              label: response2.userDataOrg[i].nombreempresa,
-              value: response2.userDataOrg[i].idempresa
-            }
+          let response2 = this.authService.orgLoad(credentials).subscribe(
+            response2 => {
+             for (let i=0; i<response2.userDataOrg.length; i++ ){
+                this.listOrg[i] = {
+                  name: response2.userDataOrg[i].nombreempresa,
+                  type: 'radio',
+                  label: response2.userDataOrg[i].nombreempresa,
+                  value: response2.userDataOrg[i].idempresa
+                }
 
-          }
-          this.org =response2.value;
-          this.presentAlertRadio();
+              }
+              //this.org =response2.value;
+              this.presentAlertRadio();
+            },
+            error => {
+              console.log(error);
+           //   this.presentAlert("Error","El correo no existe");
+            }
+          );
+          // let response2 = this.authService.orgLoad(credentials);
+          // console.log(response2.userDataOrg)
+          // // for (let i=0; i<response2.userDataOrg.length; i++ ){
+          //   this.listOrg[i] = {
+          //     name: response2.userDataOrg[i].nombreempresa,
+          //     type: 'radio',
+          //     label: response2.userDataOrg[i].nombreempresa,
+          //     value: response2.userDataOrg[i].idempresa
+          //   }
+
+          // }
+          // this.org =response2.value;
+          //this.presentAlertRadio();
         }
        
         // this.dismissLoading();

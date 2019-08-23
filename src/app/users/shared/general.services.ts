@@ -229,42 +229,57 @@ export class AuthService {
     }
 
     public orgLoad(credentials: any): any {
-      const response: any = {        
-          userDataOrg: [
-              {
-                  idempresa: '2',
-                  0: '2',
-                  nombreempresa: 'Medicina y Cirugia Plastica Lta.',
-                  1: 'Medicina y Cirugia Plastica Lta.'
-              },
-              {
-                  idempresa: '3',
-                  0: '3',
-                  nombreempresa: 'Fundación FaceArt',
-                  1: 'Fundación FaceArt'
-              },
-              {
-                  idempresa: '4',
-                  0: '4',
-                  nombreempresa: 'Fixed With Surgery S.A',
-                  1: 'Fixed With Surgery S.A'
-              },
-              {
-                  idempresa: '5',
-                  0: '5',
-                  nombreempresa: 'Clinica Traumatologia y Cirugia IPS',
-                  1: 'Clinica Traumatologia y Cirugia IPS'
-              },
-              {
-                  idempresa: '6',
-                  0: '6',
-                  nombreempresa: 'NexGen Alternative Medicine',
-                  1: 'NexGen Alternative Medicine'
-              }
-          ]
-      };
 
-      return response;
+      let data = {
+        username: credentials.username,
+        password: credentials.password
+      };
+      console.log(data);
+      return this.http
+      .post(`http://54.233.178.103/Hops-Api-noti/Eventos/OrgBusqueda.php`, data).pipe(
+         map((response: any) => {
+            console.log(response);
+            return response;
+         }),catchError(this.handleError)
+      );
+
+
+      // const response: any = {        
+      //     userDataOrg: [
+      //         {
+      //             idempresa: '2',
+      //             0: '2',
+      //             nombreempresa: 'Medicina y Cirugia Plastica Lta.',
+      //             1: 'Medicina y Cirugia Plastica Lta.'
+      //         },
+      //         {
+      //             idempresa: '3',
+      //             0: '3',
+      //             nombreempresa: 'Fundación FaceArt',
+      //             1: 'Fundación FaceArt'
+      //         },
+      //         {
+      //             idempresa: '4',
+      //             0: '4',
+      //             nombreempresa: 'Fixed With Surgery S.A',
+      //             1: 'Fixed With Surgery S.A'
+      //         },
+      //         {
+      //             idempresa: '5',
+      //             0: '5',
+      //             nombreempresa: 'Clinica Traumatologia y Cirugia IPS',
+      //             1: 'Clinica Traumatologia y Cirugia IPS'
+      //         },
+      //         {
+      //             idempresa: '6',
+      //             0: '6',
+      //             nombreempresa: 'NexGen Alternative Medicine',
+      //             1: 'NexGen Alternative Medicine'
+      //         }
+      //     ]
+      // };
+
+      // return response;
 
     }
 
