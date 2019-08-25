@@ -21,6 +21,7 @@ import { FCM } from '@ionic-native/fcm/ngx';
   imports: [
     FormsModule,
     BrowserModule,
+    
     IonicModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
