@@ -60,6 +60,17 @@ export class AppComponent {
 
   }
 
+  async presentAlert(header, message) {
+    const alert = await this.alertController.create({
+      header: header,
+      subHeader: '',
+      message: message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
   loggedIn() {
     //En particular quiero inicializar mi data del menu
     console.log("Usuario loggeado");
@@ -71,27 +82,30 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+       this.fcm.getToken().then(token => {
+      console.log(token);
+      this.presentAlert("token",token);
+       });
+
+    this.fcm.onTokenRefresh().subscribe(token => {
+      console.log(token);
+    });
+
+    this.fcm.onNotification().subscribe(data => {
+      console.log(data);
+      if (data.wasTapped) {
+        console.log('Received in background');
+        this.router.navigate([data.landing_page, data.price]);
+      } else {
+        console.log('Received in foreground');
+        this.router.navigate([data.landing_page, data.price]);
+      }
+    });
      
     });
 
-    // this.fcm.getToken().then(token => {
-    //   console.log(token);
-    // });
-
-    // this.fcm.onTokenRefresh().subscribe(token => {
-    //   console.log(token);
-    // });
-
-    // this.fcm.onNotification().subscribe(data => {
-    //   console.log(data);
-    //   if (data.wasTapped) {
-    //     console.log('Received in background');
-    //     this.router.navigate([data.landing_page, data.price]);
-    //   } else {
-    //     console.log('Received in foreground');
-    //     this.router.navigate([data.landing_page, data.price]);
-    //   }
-    // });
+   
   }
 
   //cierro la sesion elimino el objeto del storage pero lo seteo con valores vacios para evitar el log que explotaba
