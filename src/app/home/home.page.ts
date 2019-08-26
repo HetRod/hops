@@ -17,11 +17,13 @@ import { Storage } from '@ionic/storage';
 })
 export class HomePage implements OnInit {
   public item: boolean;
+  public date: Date = new Date();
   public auth: {};
   public user
   private storage:Storage
   public errorMsg: string = 'Error Message.';
-  public listOrg: any[] = []
+  public listOrg: any[] = [];
+ 
   
   ngOnInit() {
     this.item = false;
@@ -88,11 +90,16 @@ export class HomePage implements OnInit {
         });
         let idrol = response.userData.idrol
         if (idrol === '2'){
-          let data:string = response.userData.idempresa;
+          let data = {
+            idempresa: response.userData.idempresa,
+            mes: this.date.getMonth() + 1,
+            ano: this.date.getFullYear()
+          };
+        //  let data:string = response.userData.idempresa;
           this.router.navigate(['/company'],{ state: { data} });
           console.log(response.userData);
           this.dismissLoading();
-        }else if(idrol === '3') {
+        }else if((idrol === '3') ||(idrol === '4')) {
           this.dismissLoading();
           let response2 = this.authService.orgLoad(credentials).subscribe(
             response2 => {
@@ -142,7 +149,7 @@ export class HomePage implements OnInit {
   }
 
   async presentAlertRadio() {
-
+    
     const alert = await this.alertController.create({
       header: 'Seleccione una Empresa',
       inputs: this.listOrg,
@@ -152,13 +159,18 @@ export class HomePage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel');
+            //console.log('Confirm Cancel');
           }
         }, {
           text: 'Ok',
-          handler: (data:string) => {
+          handler: (data2:string) => {
+            let data = {
+              idempresa: data2,
+              mes: this.date.getMonth() + 1,
+              ano: this.date.getFullYear()
+            };
             this.router.navigate(['/company'],{ state: {data } });
-            console.log(data);
+            //console.log(data);
           }
         }
       ]

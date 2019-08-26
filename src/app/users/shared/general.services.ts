@@ -138,7 +138,7 @@ export class AuthService {
       return this.http
       .post(`http://54.233.178.103/Hops-Api-noti/Eventos/CargarEvento.php`, data).pipe(
         map((response: any) => {
-           // console.log(response);
+           console.log(response);
            return response;
 
         }),catchError(this.handleError)
@@ -282,6 +282,10 @@ export class AuthService {
       // return response;
 
     }
+
+    // public notificacion(Data:any){
+
+    // }
 
     public logout(): any {
      

@@ -13,6 +13,12 @@ export class CompanyPage implements OnInit {
   argumentos = null
   public date: Date = new Date();
   public events: any[];
+  public datos:any;
+  public mes:any;
+  public year:any;
+  monthNames = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO",
+  "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"
+  ];
   
 
   constructor(
@@ -24,6 +30,7 @@ export class CompanyPage implements OnInit {
 
   ngOnInit() {
     this.argumentos = this.router.getCurrentNavigation().extras.state;
+    console.log(this.argumentos);
   }
 
   public loading;
@@ -41,11 +48,19 @@ export class CompanyPage implements OnInit {
   }
 
   getEvents(date){
+
+    console.log(date);
+
     this.authService.eventsLoad(date).subscribe(
       response => {
           this.events = response.eventos;
+          this.datos = this.monthNames[(date.mes -1)];
+          this.mes =(date.mes);
+          this.year=(date.año);
           this.dismissLoading();
+          console.log(response);
       },
+
       error => {
         console.log(error.text);
       }
@@ -60,9 +75,9 @@ export class CompanyPage implements OnInit {
         numdoc: userData.numerodocumento,
         open: false,
         rol: userData.idrol,
-        orgs: this.argumentos.data,
-        año: this.date.getFullYear(),
-        mes: this.date.getMonth() + 1
+        orgs: this.argumentos.data.idempresa,
+        año: this.argumentos.data.ano,
+        mes: this.argumentos.data.mes
       };
 
       this.getEvents(data);
@@ -80,35 +95,41 @@ export class CompanyPage implements OnInit {
     this.router.navigate(['/evendetail'],{ state: {evento: evento } });
   }
 
-  previous(date){
-    console.log(date);
-    //let month :any = date.getMonth();
-    // this.authService.getUserData().then(userData => {
-    
-    //   let data: any = {
-    //     numdoc: userData.numerodocumento,
-    //     open: false,
-    //     rol: userData.idrol,
-    //     orgs: userData.idempresa,
-    //     año: this.date.getFullYear(),
-    //     mes: month
-    //   };
+  previous(mes_ant,year_ant){
 
-    //   this.authService.eventsLoad(data).subscribe(
-    //     response => {
-    //       console.log(response);
-    //         this.events = response.eventos;
-    //         this.dismissLoading();
-    //     },
-    //     error => {
-    //       console.log(error.text);
-    //     }
-    //   );
-      
-      
+    this.authService.getUserData().then(userData => {
+    
+      let data: any = {
+        numdoc: userData.numerodocumento,
+        open: false,
+        rol: userData.idrol,
+        orgs: this.argumentos.data.idempresa,
+        año: year_ant,
+        mes: mes_ant-1,
+      };
+      console.log(data);
+      this.getEvents(data);
+    
+    });
+   
+  }
 
+  siguiente(mes_ant,year_ant){
+
+    this.authService.getUserData().then(userData => {
     
-    // });
+      let data: any = {
+        numdoc: userData.numerodocumento,
+        open: false,
+        rol: userData.idrol,
+        orgs: this.argumentos.data.idempresa,
+        año: year_ant,
+        mes: mes_ant+1,
+      };
+      console.log(data);
+      this.getEvents(data);
     
+    });
+   
   }
 }

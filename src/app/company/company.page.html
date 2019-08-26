@@ -12,7 +12,7 @@
   <div class ="events">
     <div class="ion-text-uppercase">
         <h3  _ngcontent-wfm-c1="" style="
-        text-align: center;" >{{ date | date: 'MMMM'}}</h3>
+        text-align: center;" >{{ datos }}</h3>
     </div>
    
   
@@ -37,14 +37,14 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar color="light">
-    <ion-buttons slot="secondary">
-      <ion-button (click)="previous()">
+    <ion-buttons slot="start">
+      <ion-button (click)="previous(mes,year)">
         <ion-icon name="arrow-dropleft"></ion-icon>
         <ion-label>Mes Anterior</ion-label>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="primary">
-      <ion-button color="primary">
+    <ion-buttons slot="primary" >
+      <ion-button color="primary" (click)="siguiente(mes,year)">
         <ion-label>Mes Siguiente</ion-label>
         <ion-icon name="arrow-dropright"></ion-icon>
       </ion-button>

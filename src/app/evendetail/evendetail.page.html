@@ -18,16 +18,16 @@
       <ion-item>
         <h3 class="ion-text-uppercase" _ngcontent-wfm-c1="" style="text-align: left;" > {{ evento?.evento.espaciofisico }} </h3>
         <ion-note *ngIf="evento?.evento.estado == 2"  slot="end" color="dark" class="confirmado"> 
-          Confirmado
+          <h5>  Confirmado</h5> 
         </ion-note>
         <ion-note *ngIf="evento?.evento.estado == 4"  slot="end" color="dark" class="reservado"> 
-          Reservado
+          <h5>  Reservado </h5> 
         </ion-note>
         <ion-note *ngIf="evento?.evento.estado == 1"  slot="end" color="dark" class="pendiente"> 
-          Pendiente
+          <h5> Pendiente </h5> 
         </ion-note>
         <ion-note *ngIf="evento?.evento.estado == 3"  slot="end" color="dark" class="completado"> 
-          Completado
+          <h5>Completado</h5> 
         </ion-note>
       </ion-item>
       <ion-item>
@@ -65,7 +65,7 @@
   </ion-content>
   <ion-footer>
     <ion-toolbar color="light">
-      <ion-buttons *ngIf="evento?.evento.estado != 3" slot="secondary" >
+      <ion-buttons *ngIf="evento?.evento.estado != 3" slot="start" >
         <ion-button  slot="start" color="danger" (click)="cancel(evento?.evento.idevento,evento?.evento.idempresa)">
           <ion-icon name="close"></ion-icon>
           <ion-label>Cancelar </ion-label>
