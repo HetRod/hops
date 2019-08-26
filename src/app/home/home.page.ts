@@ -88,7 +88,7 @@ export class HomePage implements OnInit {
         });
         let idrol = response.userData.idrol
         if (idrol === '2'){
-          let data:string = '3';
+          let data:string = response.userData.idempresa;
           this.router.navigate(['/company'],{ state: { data} });
           console.log(response.userData);
           this.dismissLoading();
