@@ -8,6 +8,7 @@ import { LoadingController } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { Events } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 
 @Component({
@@ -23,11 +24,14 @@ export class HomePage implements OnInit {
   private storage:Storage
   public errorMsg: string = 'Error Message.';
   public listOrg: any[] = [];
- 
+  public token: string;
+  
   
   ngOnInit() {
     this.item = false;
     this.loginForm.reset();
+
+    
     
   }
 
@@ -47,7 +51,8 @@ export class HomePage implements OnInit {
     public loadingController: LoadingController,
     private authService: AuthService,
     private router: Router,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private fcm: FCM
   ) {}
 
   async presentAlert(header, message) {
@@ -74,16 +79,56 @@ export class HomePage implements OnInit {
   }
 
   public login() {
-     this.presentLoading();
-
+    
     let credentials = {
       username: this.loginForm.get('username').value,
       password: this.loginForm.get('password').value
     };
 
-   
+    this.presentLoading();
     this.authService.login(credentials).subscribe(
       response => {
+        
+        this.fcm.getToken().then(token => {
+          this.token=token;
+          console.log(token);
+            this.presentAlert("token",token);
+         
+        });
+
+        this.fcm.onTokenRefresh().subscribe(token => {
+          this.token=token;
+          console.log(token);
+          this.presentAlert("tok",token);
+        });
+
+        let dataNoti = {
+          idusuario: response.userData.idusuario,
+          token: this.token
+        };
+
+        this.authService.saveTokenBD(dataNoti).subscribe(
+          response2 => {
+           // console.log(token);
+            this.presentAlert("to",this.token);
+          },
+          error => {
+            console.log(error);
+         //   this.presentAlert("Error","El correo no existe");
+          }
+        );
+
+        // this.fcm.onNotification().subscribe(data => {
+        //   console.log(data);
+        //   if (data.wasTapped) {
+        //     console.log('Received in background');
+        //     this.router.navigate([data.landing_page, data.price]);
+        //   } else {
+        //     console.log('Received in foreground');
+        //     this.router.navigate([data.landing_page, data.price]);
+        //   }
+        // });
+
         this.authService.saveUserDataLocalStorage(response.userData).then(()=>{
           //Publico el evento user_login que ya se que app.component lo esta escuchando
           this.events.publish('user_login');
@@ -145,7 +190,7 @@ export class HomePage implements OnInit {
         this.presentAlert("Ops..Tenemos problemas para iniciar sesión","Solicitud incorrecta en usuario y/o contraseña")
       }
     );
-
+   
   }
 
   async presentAlertRadio() {

@@ -287,6 +287,16 @@ export class AuthService {
 
     // }
 
+    public saveTokenBD(data:any) : any{
+      return this.http
+      .post(`http://54.233.178.103/Hops-Api-noti/Eventos/Login/SaveToken.php`, data).pipe(
+         map((response: any) => {
+            // console.log(response);
+            // return response;
+         }),catchError(this.handleError)
+      );
+    }
+
     public logout(): any {
      
       return this.storage.remove('app.userData').then(() => {
