@@ -80,25 +80,20 @@ export class AuthService {
       return this.http
       .get(this.URL,id).pipe(
         map((response: any) => {
-
-       
-           
            return response;
-
-
         }),catchError(this.handleError)
      );
     }
 
     public notiCancel (data:any):any{
-      console.log(data);
-      return true;
-      // return this.http
-      // .post(`http://54.233.178.103/Hops-Api-noti/Eventos/Notificacion/NotiUpdate.php`, data).pipe(
-      //    map((response: any) => {
-      //       return response;
-      //    }),catchError(this.handleError)
-      // );
+     // console.log(data);
+     
+      return this.http
+      .post(`https://cors-anywhere.herokuapp.com/http://54.233.178.103/Hops-Api-noti/Eventos/Notificacion/NotiUpdate.php`, data).pipe(
+         map((response: any) => {
+            return response;
+         }),catchError(this.handleError)
+      );
     }
 
 

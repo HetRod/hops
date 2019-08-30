@@ -82,8 +82,22 @@ export class EvendetailPage implements OnInit {
               this.authService.showEvento(id).subscribe(
                 response2 => {
                   response2.estadonew=5;
-                  console.log(response2);
+                  response2.idpaciente = response2.idpacientes;
+                 // console.log(response2);
                   this.data = response2;
+
+                  // funciona pero se comenta para no mandar mensajes
+                  // this.authService.notiCancel(this.data).subscribe(
+                  //   response3 => {
+                     
+                  //     console.log(response3);
+    
+                  //   },
+                  //   error => {
+                  //     console.log(error);
+                  //    // this.presentAlert("Error","");
+                  //   }
+                  // );
           
                 },
                 error => {
@@ -92,17 +106,7 @@ export class EvendetailPage implements OnInit {
                 }
               );
 
-              // this.authService.notiCancel(this.data).subscribe(
-              //   response3 => {
-                 
-              //     console.log(response3);
-
-              //   },
-              //   error => {
-              //     console.log(error);
-              //    // this.presentAlert("Error","");
-              //   }
-          //    );
+            
 
               //console.log(response);
               this.presentAlert("Éxito!!","El evento ha sido cancelado");

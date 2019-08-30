@@ -18,6 +18,7 @@ export class CompletarPage implements OnInit {
   public horaini:any;
   public fechafin:any;
   public horafin:any;
+  public data:any;
  
  
 
@@ -94,6 +95,35 @@ export class CompletarPage implements OnInit {
             this.authService.completar(credentials).subscribe(
               response =>{
                // console.log(response);
+
+
+                this.authService.showEvento(credentials.idevento).subscribe(
+                  response2 => {
+                    response2.estadonew=3;
+                    response2.idpaciente = response2.idpacientes;
+                   // console.log(response2);
+                    this.data = response2;
+
+                    // funciona pero se comenta para no mandar mensajes
+                    // this.authService.notiCancel(this.data).subscribe(
+                    //   response3 => {
+                      
+                    //     console.log(response3);
+      
+                    //   },
+                    //   error => {
+                    //     console.log(error);
+                    //    // this.presentAlert("Error","");
+                    //   }
+                    // );
+            
+                  },
+                  error => {
+                    console.log(error);
+                  // this.presentAlert("Error","");
+                  }
+                );
+
                 this.presentAlert("Éxito!!","El evento ha sido completado");
                 let data:string = credentials.idempresa;
                 this.router.navigate(['/company'],{ state: { data} });
