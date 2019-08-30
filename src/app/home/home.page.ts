@@ -30,9 +30,6 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.item = false;
     this.loginForm.reset();
-
-    
-    
   }
 
   public loading;
@@ -91,15 +88,13 @@ export class HomePage implements OnInit {
         
         this.fcm.getToken().then(token => {
           this.token=token;
-          console.log(token);
-            this.presentAlert("token",token);
+          //console.log(token);
+          //  this.presentAlert("token",token);
          
         });
 
         this.fcm.onTokenRefresh().subscribe(token => {
           this.token=token;
-          console.log(token);
-          this.presentAlert("tok",token);
         });
 
         let dataNoti = {
@@ -113,21 +108,21 @@ export class HomePage implements OnInit {
             this.presentAlert("to",this.token);
           },
           error => {
-            console.log(error);
+           // console.log(error);
          //   this.presentAlert("Error","El correo no existe");
           }
         );
 
-        // this.fcm.onNotification().subscribe(data => {
-        //   console.log(data);
-        //   if (data.wasTapped) {
-        //     console.log('Received in background');
-        //     this.router.navigate([data.landing_page, data.price]);
-        //   } else {
-        //     console.log('Received in foreground');
-        //     this.router.navigate([data.landing_page, data.price]);
-        //   }
-        // });
+        this.fcm.onNotification().subscribe(data => {
+          console.log(data);
+          if (data.wasTapped) {
+           // console.log('Received in background');
+            this.router.navigate([data.landing_page, data.price]);
+          } else {
+           // console.log('Received in foreground');
+            this.router.navigate([data.landing_page, data.price]);
+          }
+        });
 
         this.authService.saveUserDataLocalStorage(response.userData).then(()=>{
           //Publico el evento user_login que ya se que app.component lo esta escuchando
@@ -140,9 +135,10 @@ export class HomePage implements OnInit {
             mes: this.date.getMonth() + 1,
             ano: this.date.getFullYear()
           };
+          console.log(data);
         //  let data:string = response.userData.idempresa;
           this.router.navigate(['/company'],{ state: { data} });
-          console.log(response.userData);
+          //console.log(response.userData);
           this.dismissLoading();
         }else if((idrol === '3') ||(idrol === '4')) {
           this.dismissLoading();
@@ -157,7 +153,7 @@ export class HomePage implements OnInit {
                 }
 
               }
-              //this.org =response2.value;
+            
               this.presentAlertRadio();
             },
             error => {
@@ -165,24 +161,9 @@ export class HomePage implements OnInit {
            //   this.presentAlert("Error","El correo no existe");
             }
           );
-          // let response2 = this.authService.orgLoad(credentials);
-          // console.log(response2.userDataOrg)
-          // // for (let i=0; i<response2.userDataOrg.length; i++ ){
-          //   this.listOrg[i] = {
-          //     name: response2.userDataOrg[i].nombreempresa,
-          //     type: 'radio',
-          //     label: response2.userDataOrg[i].nombreempresa,
-          //     value: response2.userDataOrg[i].idempresa
-          //   }
-
-          // }
-          // this.org =response2.value;
-          //this.presentAlertRadio();
+         
         }
        
-        // this.dismissLoading();
-        // this.router.navigate(['/company/']);
-        // this.dismissLoading();
       },
       error => {
         console.log(error.text);
@@ -244,11 +225,6 @@ export class HomePage implements OnInit {
           this.presentAlert("Error","El correo no existe");
         }
       );
-      
    }
   }
-
-
- 
-
 }

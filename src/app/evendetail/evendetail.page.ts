@@ -12,6 +12,7 @@ import { AuthService } from '../users/shared/general.services';
 export class EvendetailPage implements OnInit {
 
   public evento: any;
+  public data:any;
   
 
   constructor(
@@ -34,29 +35,33 @@ export class EvendetailPage implements OnInit {
 
   ngOnInit() {
     this.evento = this.router.getCurrentNavigation().extras.state;
-    console.log(this.evento);
+    //console.log(this.evento);
   }
 
-  cancel(id,idempresa){
-    console.log(id);
-    this.presentAlertConfirm(id,idempresa);
+  cancel(id,idempresa,mes,ano){
+    //console.log(id);
+    this.presentAlertConfirm(id,idempresa,mes,ano);
     
   }
 
-  back(id){
+  back(id,mes,ano){
    
-    let data:string = id;
+    let data = {
+      idempresa: id
+    
+    };
+    //console.log(data);
     this.router.navigate(['/company'],{ state: { data} });
   }
 
   complete(evento){
-    console.log(evento);
+    //console.log(evento);
     this.router.navigate(['/completar'],{ state: {evento: evento } });
   }
 
 
 
-  async presentAlertConfirm(id,idempresa) {
+  async presentAlertConfirm(id,idempresa,mes,ano) {
 
     const alert = await this.alertController.create({
       header: 'Estimado Usuario:',
@@ -73,9 +78,38 @@ export class EvendetailPage implements OnInit {
         handler: () => {
           this.authService.cancelar(id).subscribe(
             response =>{
-              console.log(response);
+
+              this.authService.showEvento(id).subscribe(
+                response2 => {
+                  response2.estadonew=5;
+                  console.log(response2);
+                  this.data = response2;
+          
+                },
+                error => {
+                  console.log(error);
+                 // this.presentAlert("Error","");
+                }
+              );
+
+              // this.authService.notiCancel(this.data).subscribe(
+              //   response3 => {
+                 
+              //     console.log(response3);
+
+              //   },
+              //   error => {
+              //     console.log(error);
+              //    // this.presentAlert("Error","");
+              //   }
+          //    );
+
+              //console.log(response);
               this.presentAlert("Éxito!!","El evento ha sido cancelado");
-              let data:string = idempresa;
+              let data = {
+                idempresa: idempresa
+               
+              };
               this.router.navigate(['/company'],{ state: { data} });
 
             },error => {

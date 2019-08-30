@@ -70,38 +70,67 @@ export class CompletarPage implements OnInit {
       idevento: id,
       idempresa: idempresa,
       horainicio: this.loginForm.get('horainicio').value,
-      fechainicio: this.loginForm.get('fechainicio').value,
+      fechainicio: this.loginForm.get('fechainicio').value.substring(0,10),
       horafin: this.loginForm.get('horafin').value,
-      fechafin: this.loginForm.get('fechafin').value,
+      fechafin: this.loginForm.get('fechafin').value.substring(0,10),
       observaciones: this.loginForm.get('observaciones').value,
       destino: this.loginForm.get('destino').value
     
    };
 
-  //  console.log(credentials.horainicio);
-  //  console.log(credentials.fechainicio);
-  //  console.log(credentials.horafin);
-  //  console.log(credentials.fechafin);
-  //  console.log(credentials.observaciones);
-  //  console.log(credentials.destino);
-
-
-
-    this.authService.completar(credentials).subscribe(
-      response =>{
-        console.log(response);
-        this.presentAlert("Éxito!!","El evento ha sido completado");
-        let data:string = credentials.idempresa;
-        this.router.navigate(['/company'],{ state: { data} });
-
   
-      // this.router.navigate(['/company'],{ state: { data} });
 
-      },error => {
-        console.log(error.text);
+ 
+    if((credentials.observaciones == null)||(credentials.destino == null)){
+      this.presentAlert("Error!!","Por favor ingrese todos los campos para completar el evento");  
+    }else{
+      if(credentials.fechainicio == credentials.fechafin){
+        if(credentials.horainicio == credentials.horafin){
+          this.presentAlert("Error","La Horas de inicio y fin no pueden ser iguales");  
+        }else{
+          if(credentials.horainicio > credentials.horafin){
+            this.presentAlert("Error","La hora final no puede menor a la hora inicial"); 
+          }else{
+            this.authService.completar(credentials).subscribe(
+              response =>{
+               // console.log(response);
+                this.presentAlert("Éxito!!","El evento ha sido completado");
+                let data:string = credentials.idempresa;
+                this.router.navigate(['/company'],{ state: { data} });
+        
+              },error => {
+                console.log(error.text);
+              
+              }
+            );
+          }
+        }
       
+      }else{
+        if(credentials.fechafin < credentials.fechainicio){
+          this.authService.completar(credentials).subscribe(
+            response =>{
+             // console.log(response);
+              this.presentAlert("Éxito!!","El evento ha sido completado");
+              let data:string = credentials.idempresa;
+              this.router.navigate(['/company'],{ state: { data} });
+      
+        
+            // this.router.navigate(['/company'],{ state: { data} });
+      
+            },error => {
+              console.log(error.text);
+            
+            }
+          );
+        }else{
+          this.presentAlert("Error","La fecha final no puede menor a la fecha inicial"); 
+        }
+
       }
-    );
+    }
+   
+   
 
   }
 

@@ -10,12 +10,14 @@ import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./company.page.scss'],
 })
 export class CompanyPage implements OnInit {
-  argumentos = null
+  public argumentos = null
   public date: Date = new Date();
   public events: any[];
   public datos:any;
   public mes:any;
   public year:any;
+  public info:any;
+  
   monthNames = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO",
   "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"
   ];
@@ -26,11 +28,13 @@ export class CompanyPage implements OnInit {
     public loadingController: LoadingController,
     private authService: AuthService,
     private router: Router
-  ) { }
+    
+  ) {}
 
   ngOnInit() {
     this.argumentos = this.router.getCurrentNavigation().extras.state;
-    console.log(this.argumentos);
+    //console.log(this.argumentos); 
+   
   }
 
   public loading;
@@ -40,25 +44,36 @@ export class CompanyPage implements OnInit {
   }
 
   async presentLoading() {
+   
     this.loading = await this.loadingController.create({
       message: 'Cargando Eventos...',
       duration: 7000
     });
+   
     await this.loading.present();
   }
 
   getEvents(date){
 
-    console.log(date);
+    //console.log(date);
 
     this.authService.eventsLoad(date).subscribe(
       response => {
           this.events = response.eventos;
           this.datos = this.monthNames[(date.mes -1)];
+          
           this.mes =(date.mes);
           this.year=(date.año);
+
+          
+          if(this.events == null){
+            this.info=response.error.text;
+          }else{
+            this.info="";
+          }
+          
           this.dismissLoading();
-          console.log(response);
+          //console.log(response.eventos);
       },
 
       error => {
@@ -69,6 +84,7 @@ export class CompanyPage implements OnInit {
 
   getUserInfo(){
 
+    
     this.authService.getUserData().then(userData => {
     
       let data: any = {
@@ -79,7 +95,7 @@ export class CompanyPage implements OnInit {
         año: this.argumentos.data.ano,
         mes: this.argumentos.data.mes
       };
-
+      //console.log(data);
       this.getEvents(data);
     
     });
@@ -97,6 +113,12 @@ export class CompanyPage implements OnInit {
 
   previous(mes_ant,year_ant){
 
+  
+    if(mes_ant==1){
+      mes_ant=13;
+      year_ant=year_ant-1;
+    }
+
     this.authService.getUserData().then(userData => {
     
       let data: any = {
@@ -107,7 +129,7 @@ export class CompanyPage implements OnInit {
         año: year_ant,
         mes: mes_ant-1,
       };
-      console.log(data);
+    //  console.log(data);
       this.getEvents(data);
     
     });
@@ -115,6 +137,11 @@ export class CompanyPage implements OnInit {
   }
 
   siguiente(mes_ant,year_ant){
+
+    if(mes_ant==12){
+      mes_ant=0;
+      year_ant=year_ant+1;
+    }
 
     this.authService.getUserData().then(userData => {
     
@@ -126,7 +153,7 @@ export class CompanyPage implements OnInit {
         año: year_ant,
         mes: mes_ant+1,
       };
-      console.log(data);
+      //console.log(data);
       this.getEvents(data);
     
     });

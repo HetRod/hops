@@ -24,7 +24,7 @@
      
         <ion-label>Fecha-Hora Inicio</ion-label>
        
-        <ion-datetime displayFormat="YYYY/MM/DD"  formControlName="fechainicio" [ngModel]="fechaini"></ion-datetime>
+        <ion-datetime displayFormat="YYYY-MM-DD"  formControlName="fechainicio" [ngModel]="fechaini"></ion-datetime>
        
         <ion-datetime formControlName="horainicio"
           display-format="HH:mm"
@@ -33,7 +33,7 @@
       </ion-item>
       <ion-item>
         <ion-label>Fecha-Hora Fin</ion-label>
-        <ion-datetime displayFormat="YYYY/MM/DD" formControlName="fechafin" [ngModel]="fechafin"></ion-datetime>
+        <ion-datetime displayFormat="YYYY-MM-DD" formControlName="fechafin" [ngModel]="fechafin"></ion-datetime>
         <ion-datetime formControlName="horafin"
           display-format="HH:mm"
           picker-format="HH:mm"
