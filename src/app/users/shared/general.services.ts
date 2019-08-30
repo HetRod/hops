@@ -29,7 +29,7 @@ export class AuthService {
       };
 
       return this.http
-      .post(`http://54.233.178.103/Hops-Api-noti/Eventos/Login/Login.php`, data).pipe(
+      .post(`https://cors-anywhere.herokuapp.com/http://54.233.178.103/Hops-Api-noti/Eventos/Login/Login.php`, data).pipe(
          map((response: any) => {
             // console.log(response);
             // let idrol = response.idrol;
@@ -50,7 +50,7 @@ export class AuthService {
       };
 
       return this.http
-      .post(`http://54.233.178.103/Hops-Api-noti/Eventos/Login/Recupera.php`, data).pipe(
+      .post(`https://cors-anywhere.herokuapp.com/http://54.233.178.103/Hops-Api-noti/Eventos/Login/Recupera.php`, data).pipe(
          map((response: any) => {
             return response;
          }),catchError(this.handleError)
@@ -59,7 +59,7 @@ export class AuthService {
 
   
     public cancelar (id: any):any{
-      this.URL = "http://54.233.178.103/Hops-Api-noti/Eventos/CancelarEvento.php?id=" + id;
+      this.URL = "https://cors-anywhere.herokuapp.com/http://54.233.178.103/Hops-Api-noti/Eventos/CancelarEvento.php?id=" + id;
      
       return this.http
       .get(this.URL,id).pipe(
@@ -75,7 +75,7 @@ export class AuthService {
     }
 
     public showEvento (id:any):any{
-      this.URL = "http://54.233.178.103/Hops-Api-noti/Eventos/VerEvento.php?id=" + id;
+      this.URL = "https://cors-anywhere.herokuapp.com/http://54.233.178.103/Hops-Api-noti/Eventos/VerEvento.php?id=" + id;
      
       return this.http
       .get(this.URL,id).pipe(
@@ -115,7 +115,7 @@ export class AuthService {
         destino: credentials.destino
       };
 
-      this.URL = "http://54.233.178.103/Hops-Api-noti/Eventos/ConfirmarEvento.php?id=" +data.idevento+"&obs="+ data.observaciones +"&hi=" + data.fechainicio +" "+ data.horainicio + "&hf="  + data.fechafin +" "+ data.horafin + "&destino=" + data.destino;
+      this.URL = "https://cors-anywhere.herokuapp.com/http://54.233.178.103/Hops-Api-noti/Eventos/ConfirmarEvento.php?id=" +data.idevento+"&obs="+ data.observaciones +"&hi=" + data.fechainicio +" "+ data.horainicio + "&hf="  + data.fechafin +" "+ data.horafin + "&destino=" + data.destino;
       return this.http
       .get(this.URL).pipe(
         map((response: any) => {
@@ -138,7 +138,7 @@ export class AuthService {
      
       console.log(data);
       return this.http
-      .post(`http://54.233.178.103/Hops-Api-noti/Eventos/CargarEvento.php`, data).pipe(
+      .post(`https://cors-anywhere.herokuapp.com/http://54.233.178.103/Hops-Api-noti/Eventos/CargarEvento.php`, data).pipe(
         map((response: any) => {
            console.log(response);
            return response;
@@ -157,7 +157,7 @@ export class AuthService {
       };
       console.log(data);
       return this.http
-      .post(`http://54.233.178.103/Hops-Api-noti/Eventos/OrgBusqueda.php`, data).pipe(
+      .post(`https://cors-anywhere.herokuapp.com/http://54.233.178.103/Hops-Api-noti/Eventos/OrgBusqueda.php`, data).pipe(
          map((response: any) => {
             console.log(response);
             return response;
@@ -169,7 +169,7 @@ export class AuthService {
 
     public saveTokenBD(data:any) : any{
       return this.http
-      .post(`http://54.233.178.103/Hops-Api-noti/Eventos/Login/SaveToken.php`, data).pipe(
+      .post(`https://cors-anywhere.herokuapp.com/http://54.233.178.103/Hops-Api-noti/Eventos/Login/SaveToken.php`, data).pipe(
          map((response: any) => {
             // console.log(response);
             // return response;
@@ -214,7 +214,7 @@ export class AuthService {
     }
 
     public notificacionFCM(notificacion){
-      var link ="https://fcm.googleapis.com/fcm/send";
+      var link ="https://cors-anywhere.herokuapp.com/https://fcm.googleapis.com/fcm/send";
       var key= "AIzaSyAXMoWA60pQ67qIARiBRDbeS_9Ci1i8JZc";
 
       var data={

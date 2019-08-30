@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "487270310827",
+    "firebase_url": "https://test-ionic-77e85.firebaseio.com",
+    "project_id": "test-ionic-77e85",
+    "storage_bucket": "test-ionic-77e85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487270310827:android:9f664de8a2671a98",
+        "android_client_info": {
+          "package_name": "com.hops.appmovil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487270310827-aikkn8vtqg2q0d5ocllbss1vd5socrtp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEOZXvxTb_zH458bMnoVwg_z0hBxGLzNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487270310827-aikkn8vtqg2q0d5ocllbss1vd5socrtp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
