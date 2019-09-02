@@ -12,24 +12,24 @@
       <div class="input_username">
         <ion-item>
           <ion-icon class="icon"  name="person" color="ppal"></ion-icon>
-          <ion-input type="text"  autocomplete="off" formControlName="username" placeholder="Usuario" name="username" required></ion-input>
+          <ion-input type="text" class="text-custom-bold" autocomplete="off" formControlName="username" placeholder="Usuario" name="username" required></ion-input>
         </ion-item>
       </div>
    
       <div class="input_password">
         <ion-item>
           <ion-icon class="icon" name="lock" color="ppal"></ion-icon>
-          <ion-input type="password" autocomplete="off" formControlName="password" placeholder="Contraseña" name="password" required></ion-input>
+          <ion-input type="password" class="text-custom-bold" autocomplete="off" formControlName="password" placeholder="Contraseña" name="password" required></ion-input>
         </ion-item>
       </div>
 
       <div class="button_sesion">
-        <ion-button color="ppal" size="large" (click)="login()">
+        <ion-button color="ppal" class="ion-text-capitalize text-custom-bold" size="large" (click)="login()">
           Iniciar Sesión
         </ion-button>
       </div>
     </form>
-    <div class="forgot_password">
+    <div class="forgot_password text-custom-bold">
       <p (click)="forgot()">¿Olvidó su contraseña?</p>
     </div>
     

@@ -11,9 +11,9 @@
 <ion-content>
   <div class ="events">
     <div class="ion-text-uppercase">
-        <h3  _ngcontent-wfm-c1="" style="
+        <h3  _ngcontent-wfm-c1="" class="text-custom-bold" style="
         text-align: center;" >{{ datos }}</h3>
-         <h6  _ngcontent-wfm-c1="" style="
+         <h6  _ngcontent-wfm-c1="" class="text-custom-bold" style="
          text-align: center;" >{{ info }}</h6>
 
     </div>
@@ -28,7 +28,7 @@
         (click)="detalles(event)" >
         <ion-label >
 
-          <h2>{{ event.espaciofisico }}</h2>
+          <h2 class="text-custom-bold">{{ event.espaciofisico }}</h2>
           <h3>{{ event.procedimientos }}</h3>
           <p>{{ event.fechahorainicio.substring(0,11) }} {{ event.fechahorainicio.substring(11,16) }} </p>
         </ion-label>

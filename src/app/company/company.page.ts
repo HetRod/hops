@@ -56,7 +56,7 @@ export class CompanyPage implements OnInit {
   getEvents(date){
 
     //console.log(date);
-
+    
     this.authService.eventsLoad(date).subscribe(
       response => {
           this.events = response.eventos;
@@ -130,6 +130,7 @@ export class CompanyPage implements OnInit {
         mes: mes_ant-1,
       };
     //  console.log(data);
+    this.presentLoading();
       this.getEvents(data);
     
     });
@@ -154,6 +155,7 @@ export class CompanyPage implements OnInit {
         mes: mes_ant+1,
       };
       //console.log(data);
+      this.presentLoading();
       this.getEvents(data);
     
     });

@@ -3,6 +3,8 @@
 
 /** Ionic CSS Variables **/
 :root {
+
+  --ion-font-family: 'Hops_Font';
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -179,4 +181,37 @@
   --ion-color-contrast-rgb: var(--ion-color-white-contrast-rgb);
   --ion-color-shade: var(--ion-color-white-shade);
   --ion-color-tint: var(--ion-color-white-tint);
+}
+
+@font-face {
+  font-family: 'Hops_Font';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../assets/fonts/Biko_Regular.otf');
+}
+
+@font-face {
+  font-family: 'Hops_Font_Bold';
+  font-style: normal;
+  font-weight: bold;
+  src: url('../assets/fonts/Biko_Bold.otf');
+}
+
+@font-face {
+  font-family: 'Hops_Font_Black';
+  font-style: normal;
+  font-weight: bold;
+  src: url('../assets/fonts/Biko_Black.otf');
+}
+
+.text-custom{ 
+  font-family: "Hops_Font"; 
+}
+
+.text-custom-bold{ 
+  font-family: "Hops_Font_Bold"; 
+}
+
+.text-custom-black{ 
+  font-family: "Hops_Font_Black"; 
 }

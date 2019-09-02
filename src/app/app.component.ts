@@ -18,21 +18,24 @@ export class AppComponent {
   public date: Date = new Date();
   public data: any;
   
+ 
+  
   
   public appPages = [
     {
+      
       title: 'Inicio',
       url: '/company',
       icon: 'home'
     },
     {
       title: 'Chat',
-      url: '/list',
+      url: '/company',
       icon: 'chatbubbles'
     },
      {
        title: 'Notificaciones',
-       url: '/list',
+       url: '/company',
        icon: 'notifications'
      }
   ];

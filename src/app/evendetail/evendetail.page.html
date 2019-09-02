@@ -16,18 +16,18 @@
         </ion-button>
       </ion-item>
       <ion-item>
-        <h3 class="ion-text-uppercase" _ngcontent-wfm-c1="" style="text-align: left;" > {{ evento?.evento.espaciofisico }} </h3>
-        <ion-note *ngIf="evento?.evento.estado == 2"  slot="end" color="dark" class="confirmado"> 
-          <h5>  Confirmado</h5> 
+        <h3 class="ion-text-uppercase" _ngcontent-wfm-c1="" class="text-custom-bold" style="text-align: left;" > {{ evento?.evento.espaciofisico }} </h3>
+        <ion-note *ngIf="evento?.evento.estado == 2"  slot="end"  color="dark" class="confirmado"> 
+          <h5 class="text-custom-bold">   Confirmado</h5> 
         </ion-note>
-        <ion-note *ngIf="evento?.evento.estado == 4"  slot="end" color="dark" class="reservado"> 
-          <h5>  Reservado </h5> 
+        <ion-note *ngIf="evento?.evento.estado == 4"  slot="end" class="text-custom-bold" color="dark" class="reservado"> 
+          <h5 class="text-custom-bold">  Reservado </h5> 
         </ion-note>
-        <ion-note *ngIf="evento?.evento.estado == 1"  slot="end" color="dark" class="pendiente"> 
-          <h5> Pendiente </h5> 
+        <ion-note *ngIf="evento?.evento.estado == 1"  slot="end" class="text-custom-bold" color="dark" class="pendiente"> 
+          <h5 class="text-custom-bold"> Pendiente </h5> 
         </ion-note>
-        <ion-note *ngIf="evento?.evento.estado == 3"  slot="end" color="dark" class="completado"> 
-          <h5>Completado</h5> 
+        <ion-note *ngIf="evento?.evento.estado == 3"  slot="end" class="text-custom-bold" color="dark" class="completado"> 
+          <h5 class="text-custom-bold">Completado</h5> 
         </ion-note>
       </ion-item>
       <ion-item>
