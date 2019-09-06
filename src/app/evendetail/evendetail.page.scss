@@ -34,26 +34,47 @@ ion-content{
     text-transform: uppercase;
   }
 
+  .text{
+    color: darkslategrey;
+  }
+
+  .text_confirmado{
+    color:#cacaca;
+  }
+
 
   .confirmado {
-    border-bottom: 3px solid;
+    border-top: 13px;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #6963fc;
     border-color: #6963fc;
+   
     
   }
 
   .reservado{
-    border-bottom: 3px solid;
+    border-top: 13px;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #cacaca;
     border-color: #cacaca;
   }
 
 
   .pendiente{
-    border-bottom: 3px solid;
+    border-top: 13px;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #f3dd21;
     border-color: #f3dd21;
   }
 
-
   .completado{
-    border-bottom: 3px solid;
+    border-top: 13px;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #08b33f;
     border-color: #08b33f;
+    
   }

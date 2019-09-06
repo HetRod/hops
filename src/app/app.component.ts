@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './users/shared/general.services';
 import { Storage } from '@ionic/storage';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -131,6 +132,7 @@ export class AppComponent {
     });
   }
 
+ 
   // Limpio y seteo el objeto vacio en el storage
   resetData(){
     let data_clear = {

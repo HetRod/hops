@@ -31,7 +31,7 @@ export class AuthService {
       return this.http
       .post(`https://cors-anywhere.herokuapp.com/http://54.233.178.103/Hops-Api-noti/Eventos/Login/Login.php`, data).pipe(
          map((response: any) => {
-            // console.log(response);
+             console.log(response);
             // let idrol = response.idrol;
             // console.log(idrol);
             // this.saveTokenLocalStorage(idrol);

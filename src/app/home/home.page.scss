@@ -2,6 +2,11 @@ ion-content{
   --ion-background-color:#2d1d5a;
 }
 
+ion-toolbar{
+  --background:#2d1d5a;
+}
+
+
 ion-input{
   --placeholder-color:  #7d7595;
   --placeholder-opacity: 1;
@@ -12,6 +17,8 @@ ion-input{
   margin-left: 2rem !important;
   margin-top: 6rem;
 }
+
+
 
 .input_username{
   margin-top: 2.5rem;
@@ -25,6 +32,10 @@ ion-input{
   margin-left: 1rem;
   margin-right: 1.5rem;
   
+}
+
+.size{
+  font-size: 0.9rem;
 }
 
 .icon{

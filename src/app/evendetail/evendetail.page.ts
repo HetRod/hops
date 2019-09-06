@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../users/shared/general.services';
+import { MenuController } from '@ionic/angular';
+
 
 
 @Component({
@@ -16,9 +18,11 @@ export class EvendetailPage implements OnInit {
   
 
   constructor(
+   
     private router: Router,
     public alertController: AlertController,
     private authService: AuthService,
+    public menuCtrl: MenuController,
     private route: ActivatedRoute
   ) { }
 
@@ -37,6 +41,15 @@ export class EvendetailPage implements OnInit {
     this.evento = this.router.getCurrentNavigation().extras.state;
     //console.log(this.evento);
   }
+
+  
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(true);
+    
+  }
+
+  
 
   cancel(id,idempresa,mes,ano){
     //console.log(id);

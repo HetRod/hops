@@ -4,6 +4,9 @@ import { NgForm, FormBuilder, FormGroup, FormControl, Validators } from '@angula
 import { AuthService } from '../users/shared/general.services';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingController, AlertController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
+
+
 
 
 @Component({
@@ -35,6 +38,13 @@ export class CompletarPage implements OnInit {
     //console.log(this.fechaini);
   }
 
+  public loading;
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(true);
+    
+  }
+
   loginForm = new FormGroup({
     horainicio: new FormControl('', [Validators.required]),
     fechainicio: new FormControl('', [Validators.required]),
@@ -45,9 +55,11 @@ export class CompletarPage implements OnInit {
   });
 
   constructor(
+    public loadingController: LoadingController,
     private route: ActivatedRoute,
     public alertController: AlertController,
     private router: Router,
+    public menuCtrl: MenuController,
     private  authService:  AuthService
   ) {}
 
@@ -55,11 +67,44 @@ export class CompletarPage implements OnInit {
     const alert = await this.alertController.create({
       header: header,
       subHeader: '',
+      
       message: message,
       buttons: ['OK']
     });
 
     await alert.present();
+  }
+
+  async presentLoading(idempresa:any) {
+   
+    this.loading = await this.loadingController.create({
+      message: 'El evento ha sido completado',
+      duration: 4000
+    });
+   
+    await this.loading.present();
+    let data:string = idempresa;
+    this.router.navigate(['/company'],{ state: { data} });
+  }
+
+
+
+  async presentAlertConfirm(idempresa:any) {
+
+    const alert = await this.alertController.create({
+      header: 'Éxito:',
+      message: 'El evento ha sido completado',
+      
+      buttons: [{
+        text: 'Aceptar',
+        handler: () => {
+          let data:string = idempresa;
+          this.router.navigate(['/company'],{ state: { data} });
+        }
+      }]
+    });
+    await alert.present();
+   
   }
 
 
@@ -124,9 +169,11 @@ export class CompletarPage implements OnInit {
                   }
                 );
 
-                this.presentAlert("Éxito!!","El evento ha sido completado");
-                let data:string = credentials.idempresa;
-                this.router.navigate(['/company'],{ state: { data} });
+                // this.presentAlert("Éxito!!","El evento ha sido completado");
+                   this.presentAlertConfirm(credentials.idempresa);
+                 // this.presentLoading(credentials.idempresa);
+
+                
         
               },error => {
                 console.log(error.text);
@@ -163,6 +210,9 @@ export class CompletarPage implements OnInit {
    
 
   }
+
+
+
 
 
   back(evento){

@@ -11,6 +11,7 @@ import { Storage } from '@ionic/storage';
 import { FCM } from '@ionic-native/fcm/ngx';
 
 
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -48,6 +49,7 @@ export class HomePage implements OnInit {
     public loadingController: LoadingController,
     private authService: AuthService,
     private router: Router,
+    public menuCtrl: MenuController,
     public alertController: AlertController,
     private fcm: FCM
   ) {}
@@ -63,6 +65,10 @@ export class HomePage implements OnInit {
     await alert.present();
   }
 
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
+
   async dismissLoading() {
     await this.loading.dismiss();
   }
@@ -70,7 +76,7 @@ export class HomePage implements OnInit {
   async presentLoading() {
     this.loading = await this.loadingController.create({
       message: 'Por favor espere...',
-      duration: 5000
+      duration: 7000
     });
     await this.loading.present();
   }
@@ -85,11 +91,26 @@ export class HomePage implements OnInit {
     this.presentLoading();
     this.authService.login(credentials).subscribe(
       response => {
-        
         this.fcm.getToken().then(token => {
           this.token=token;
           //console.log(token);
           //  this.presentAlert("token",token);
+
+          let dataNoti = {
+            numdoc: response.userData.numerodocumento,
+            token: this.token
+          };
+  
+          this.authService.saveTokenBD(dataNoti).subscribe(
+            response2 => {
+             // console.log(token);
+              this.presentAlert("to",this.token);
+            },
+            error => {
+             // console.log(error);
+           //   this.presentAlert("Error","El correo no existe");
+            }
+          );
          
         });
 
@@ -98,7 +119,7 @@ export class HomePage implements OnInit {
         });
 
         let dataNoti = {
-          idusuario: response.userData.idusuario,
+          numdoc: response.userData.numerodocumento,
           token: this.token
         };
 
@@ -112,6 +133,10 @@ export class HomePage implements OnInit {
          //   this.presentAlert("Error","El correo no existe");
           }
         );
+
+       
+
+        
 
         this.fcm.onNotification().subscribe(data => {
           console.log(data);
@@ -141,9 +166,10 @@ export class HomePage implements OnInit {
           //console.log(response.userData);
           this.dismissLoading();
         }else if((idrol === '3') ||(idrol === '4')) {
-          this.dismissLoading();
+         
           let response2 = this.authService.orgLoad(credentials).subscribe(
             response2 => {
+              this.dismissLoading();
              for (let i=0; i<response2.userDataOrg.length; i++ ){
                 this.listOrg[i] = {
                   name: response2.userDataOrg[i].nombreempresa,

@@ -1,8 +1,8 @@
 {
-  "name": "hops",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "name": "hops_pruebas",
+  "version": "1.0.0",
+  "author": "NexgenSoluciones",
+  "homepage": "https://www.nexgensoluciones.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -70,7 +70,7 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project",
+  "description": "Hops Project",
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},

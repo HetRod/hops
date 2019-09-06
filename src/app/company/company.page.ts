@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 import { AlertController, NavController } from '@ionic/angular';
 import { AuthService } from '../users/shared/general.services';
 import { LoadingController } from '@ionic/angular';
@@ -27,6 +28,7 @@ export class CompanyPage implements OnInit {
    
     public loadingController: LoadingController,
     private authService: AuthService,
+    public menuCtrl: MenuController,
     private router: Router
     
   ) {}
@@ -104,6 +106,8 @@ export class CompanyPage implements OnInit {
   ionViewWillEnter() {
     this.presentLoading();
     this.getUserInfo();
+    this.menuCtrl.enable(true);
+    
   }
 
   detalles(evento){

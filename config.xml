@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.hops.appmovil" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>HOPS</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget id="com.hops.appmovil" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>HOPS_Pruebas</name>
+    <description>Designed By Nexgen</description>
+    <author email="hetsy.rodriguez@nexgen-soluciones.com" href="https://www.nexgensoluciones.com/">Nexgen Solutions</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
