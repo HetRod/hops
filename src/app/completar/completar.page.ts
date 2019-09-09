@@ -188,9 +188,7 @@ export class CompletarPage implements OnInit {
           this.authService.completar(credentials).subscribe(
             response =>{
              // console.log(response);
-              this.presentAlert("Éxito!!","El evento ha sido completado");
-              let data:string = credentials.idempresa;
-              this.router.navigate(['/company'],{ state: { data} });
+             this.presentAlertConfirm(credentials.idempresa);
       
         
             // this.router.navigate(['/company'],{ state: { data} });

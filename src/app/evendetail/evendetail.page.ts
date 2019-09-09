@@ -72,6 +72,24 @@ export class EvendetailPage implements OnInit {
     this.router.navigate(['/completar'],{ state: {evento: evento } });
   }
 
+  async presentAlertConfirm2(idempresa:any) {
+
+    const alert = await this.alertController.create({
+      header: 'Éxito:',
+      message: 'El evento ha sido cancelado',
+      
+      buttons: [{
+        text: 'Aceptar',
+        handler: () => {
+          let data:string = idempresa;
+          this.router.navigate(['/company'],{ state: { data} });
+        }
+      }]
+    });
+    await alert.present();
+   
+  }
+
 
 
   async presentAlertConfirm(id,idempresa,mes,ano) {
@@ -100,7 +118,7 @@ export class EvendetailPage implements OnInit {
                   this.data = response2;
 
                   // funciona pero se comenta para no mandar mensajes
-                  // this.authService.notiCancel(this.data).subscribe(
+                  //  this.authService.notiCancel(this.data).subscribe(
                   //   response3 => {
                      
                   //     console.log(response3);
@@ -122,12 +140,8 @@ export class EvendetailPage implements OnInit {
             
 
               //console.log(response);
-              this.presentAlert("Éxito!!","El evento ha sido cancelado");
-              let data = {
-                idempresa: idempresa
-               
-              };
-              this.router.navigate(['/company'],{ state: { data} });
+              this.presentAlertConfirm2(idempresa);
+            
 
             },error => {
               console.log(error.text);
