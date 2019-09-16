@@ -51,9 +51,9 @@ export class EvendetailPage implements OnInit {
 
   
 
-  cancel(id,idempresa,mes,ano){
+  cancel(id,idempresa,mes,ano,estado){
     //console.log(id);
-    this.presentAlertConfirm(id,idempresa,mes,ano);
+    this.presentAlertConfirm(id,idempresa,mes,ano,estado);
     
   }
 
@@ -92,7 +92,7 @@ export class EvendetailPage implements OnInit {
 
 
 
-  async presentAlertConfirm(id,idempresa,mes,ano) {
+  async presentAlertConfirm(id,idempresa,mes,ano,estado) {
 
     const alert = await this.alertController.create({
       header: 'Estimado Usuario:',
@@ -113,8 +113,13 @@ export class EvendetailPage implements OnInit {
               this.authService.showEvento(id).subscribe(
                 response2 => {
                   response2.estadonew=5;
+                  response2.estadoactual= estado;
                   response2.idpaciente = response2.idpacientes;
-                 // console.log(response2);
+                  response2.eventdesde = response2.eventdesde.substring(11,19);
+                  response2.eventhasta = response2.eventhasta.substring(11,19);
+                  response2.eventfecha = response2.eventfecha.substring(0,10);
+
+                //  console.log(response2);
                   this.data = response2;
 
                   // funciona pero se comenta para no mandar mensajes

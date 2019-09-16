@@ -109,7 +109,7 @@ export class CompletarPage implements OnInit {
 
 
 
-  public login(id: any, idempresa:any) {
+  public login(id: any, idempresa:any, estado:any) {
   
 
    let credentials = {
@@ -145,7 +145,11 @@ export class CompletarPage implements OnInit {
                 this.authService.showEvento(credentials.idevento).subscribe(
                   response2 => {
                     response2.estadonew=3;
+                    response2.estadoactual=estado;
                     response2.idpaciente = response2.idpacientes;
+                    response2.eventdesde = response2.eventdesde.substring(11,19);
+                    response2.eventhasta = response2.eventhasta.substring(11,19);
+                    response2.eventfecha = response2.eventfecha.substring(0,10);
                    // console.log(response2);
                     this.data = response2;
 
